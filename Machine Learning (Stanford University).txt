@@ -1,0 +1,236 @@
+Machine Learning
+================
+Every learning problem consists of n samples of data and each sample consists of m features/attributes/dimensions.
+
+Types:
+1. Supervised Learning
+======================
+In addition of n samples of data, it comes with additional attributes that we want to predict, usually known as target.
+Goal can either be:
+a. Classification
+-----------------
+Each samples belong to two or more classes and we want to learn from already labeled data how to predict the class of unlabeled data.
+Predict discrete-valued output.
+For e.g Handwriting recognization
+b. Regression
+------------
+Desired output consists of one or more continous variables.
+Predict real-valued output.
+For e.g Predicting housing prices, stock market prices.
+
+Note: In general, if a target has corresponding target name, then it's a classification problem, otherwise Regression is better option to choose.
+
+2. Unsupervised Learning
+========================
+No additional target value is given.
+Goal can either be:
+a. Clustering
+-------------
+Discover groups of similiar examples within the data.
+For e.g Cocktail Party Problem
+The cocktail party effect is the phenomenon of being able to focus one's auditory attention on a particular stimulus while filtering out a range of other stimuli, much the same way that a party goer can focus on a single conversation in a noisy room.
+b. Density Estimation
+---------------------
+Determine the distribution of data within the input space.
+c. Visualization
+----------------
+Project the data from high-dimensional space to two or three dimensions.
+It also results in compression.
+d. Anomaly Detection
+--------------------
+Discover if the new test data is anomaly for the system.
+Use precision, recall, and F1 score to measure the performance of algorithm.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Training Set ------------> Learning Algorithm ---------------> h function
+
+Job of h (Hypothesis function) or a model is to
+
+Input ------------> h ------------------> Output
+
+if model is underfit
+	then it is said to have high bias
+if model is overfit which usually happens when the model learns from too many features
+	then it is said to have high variance
+
+In both cases, it will fail to generalise to new cases.
+
+In order to avoid underfitting:
+1. Get more features
+2. Make the model more complex
+3. Change the model
+
+In order to avoid overfitting:
+1. Reduce number of features
+2. Regularisation (Keep all the features, but reduce the magnitude of weights for each feature)
+
+h function:
+
+Supervised Learning
+-------------------
+
+Regression Algorithms:
+1. Stochastic Gradient Descent (SGDRegressor)
+2. Linear Regression (LinearRegression) with and without regularisation penalty. (Ridge, Lasso, ElasticNet)
+3. Support Vector Machines (SVR)
+4. K-Nearest Neighbors (KNeighborsRegressor)
+5. Decision Tree (DecisionTreeRegressor)
+6. Random Forests (RandomForestRegressor)
+7. Extremely Randomized Trees (ExtraTreesRegressor)
+8. AdaBoost (AdaBoostRegressor)
+
+Classification Algorithms:
+1. Stochastic Gradient Descent (SGDClassifier)
+2. Logistic Regression (LogisticRegression)
+3. Support Vector Machines (SVC)
+4. K-Nearest Neighbors (KNeighborsClassifier)
+5. Naive Bayes
+6. Decision Tree (DecisionTreeClassifier)
+7. Random Forests (RandomForestClassifier)
+8. Extremely Randomized Trees (ExtraTreeClassifier)
+9. AdaBoost (AdaBoostClassifier)
+
+Unsupervised Learning
+---------------------
+1. K-means (Clustering)
+2. Principal Component Analysis (Dimension Reduction)
+3. Gaussian & Multivariate Gaussian model (Anomaly Detection)
+
+Gradient Descent is very powerful tool for learning features.
+It is usually used together with other Hypothesis functions.
+
+Apart of GD, we have Normalisation method, which can be used to solve minimum cost function.
+But, since it's complexity is O(x3), hence not suitable for large datasets.
+
+In short, if features (n) is below 10k, normalisation is better choice; otherwise go for GD.
+Moreover, GD is more generic algorithm; it can be used in wide range of machine learning algorithms.
+
+Gradient Descent method is also called Batch Gradient Descent. It updates its coef_ after each iteration, but in each iteration it evaluates whole training samples.
+Stochastic Gradient Descent is also called On-line Gradient Descent. It updates its coef_ after each iteration, but each iteration contains only one training sample.
+
+In order to make Gradient Descent faster:
+Scaling features can be helful many times.
+Get every feature into approximately -1 <= xi <= 1
+
+Mean Normalization is also done for scaling features.
+
+Plotting graph is important tool to decide when your learning is working correctly.
+
+By viewing graph between Cost function and Iterations, adjust the learning rate. (Alpha)
+
+Trying Alpha as follows:
+0.001 -> 0.003 -> 0.01 -> 0.03 -> 0.1 -> 0.3 -> 1
+
+You can also create your own features, or decrease the size of features in order to reduce the complexity of the problem.
+
+If you use polynomial regression, feature scaling is very important.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+How to solve Machine Learning problem:
+
+1. Collect lot of data.
+2. Decide whether you want Supervised learning or Unsupervised learning.
+3. Convert data into samples consisting of features (Feature Extraction or Vectorisation).
+	3.1 Plot the data to see the distribution of samples. (Visualisation)
+	3.2 Store data(Sample consisting of features) and target into disk for further use.
+4. Split the data into training and testing.
+	4.1 Determine if features are enough to learn, otherwise engineer more features. (Feature Engineering)
+	4.2 If features are large, select good set of features for learning. (Feature Selection)
+	4.3 Perform data transformation for faster learning (Data Preprocessing).
+		4.3.1 Perform (Feature Scaling) methods.
+	4.4 Choose if using unsupervised learning method to reduce the dimensions of data will do good for you.
+5. Choose the right model and learning algorithm. (Model Selection)
+6. Learn using learning algorithm.
+7. Measure the performance of the model by cross validating.
+8. Test your model using testing data.
+9. If possible visualise your model.
+	9.1 Remove outliers from training data and repeat step 6, 7, 8 to improve the model.
+10. Store your model for future use. (Model Persistence)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+If n (features) is small, go for regression method.
+But, for large value of n (features), neural networks are better choice.
+
+Choosing an architecture of ANN
+===============================
+1. No. of input units = Dimensions of features (n)
+2. No. of output units = Number of classes
+3. Resonable default: 1 hidden layer, or if > 1 hidden layer, have same no. of hidden units in every layer.
+4. No. of input units < No. of units in 1st hidden layer <= No. of units in 2nd hidden layer <=.... >= No. of units in ith hidden layer > No. of output units.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Deciding what to try next?
+1. Get more training examples or artificially increase the number of training examples by applying transformations, adding noise, etc, which is known as Data Augmentation.
+2. Try smaller set of features.
+3. Try getting additional features.
+4. Try increasing/decreasing learning rate.
+
+Key Ideas
+=========
+Break the data into training, cross validation, and test set.
+
+Just don't underfit or overfit your training data.
+
+Always plot graphs (Histogram) in order to have insight of learning.
+
+Let data decide which area is most needed your attention.
+
+Always have a numerical evaluation.
+
+Implement quick and dirty machine learning code.
+
+In case of skew classes, precision and recall is better option than just predicting the solution.
+
+Logistic Regression vs SVM
+==========================
+
+if n = number of features, and m = number of samples
+
+1. n >= m Use logistic regression or SVM without a kernel (Linear Kernel)
+2. if n is small and m is intermediate, use SVM with Gaussian kernel
+3. if n is small and m is large, create more featuers, then logistic regression or SVM without a kernel.
+
+Neural Network is likely to work well for most of these settings, but may be slower to train.
+
+Anomaly Detection
+=================
+For small number of positive examples (Anomaly example), use Anomaly Detection algorithm.
+In contrast, if we have large number of postive and negative examples, use supervised learning algorithm.
+
+If there are many types of anomaly, one can't even predict, then use Anomaly Detection Algorihm.
+
+Recommendation System
+=====================
+Use linear Regression for n users to find the rating the user will give to 'Havent watched' movies.
+
+Large Datasets
+==============
+
+In order to deal with large datasets
+1. Make sure by increasing the learning set, error rate is decreasing; otherwise there is no need to use large datasets.
+2. One can use three flavours of Gradient Descent:
+a. Batch Gradient Descent.
+b. Stochastic Gradient Descent. (One at a time)
+c. Mini Batch Gradient Descent.
+
+Always check the convergence by plotting the cost function.
+
+Online Learning Method keeps on learning from every single new dataset. Instead of getting a lot of dataset at once, with every new dataset improve your hypothesis gradually.
+
+Map Reduce & Data Parallelism
+=============================
+
+Main Idea: Divide the work into smaller subsets, and allot each resource(computers or cores) to work only a small batch of a work.
+
+Using multiple machines to calculate the sum of Batch Gradient Descent, and centralised master server to calculate the rest of formula for machine learning.
+
+Always create a pipeline in order to solve a complex problem.
+				========
+
+Artificial Data Synthesis
+
+Do ceiling analysis in order to identify the components which overall affects the performance of the pipeline. Focus on those areas more.
