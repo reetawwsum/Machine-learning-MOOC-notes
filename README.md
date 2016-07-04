@@ -11,4 +11,4 @@ Notes from various machine learning MOOC
 6. Convolutional Neural Networks for Visual Recognition (Stanford CS231n) (Stanford OCW)
 
 ## License
-The MIT License (MIT)](LICENSE)
+[The MIT License (MIT)](LICENSE)
