@@ -947,3 +947,65 @@ and eta is distortion penalty.
 Finding arg max f(y) is NP-hard problem. Using Beam Search to solve this problem.
 
 Decoding Algorithm:
+
+A state is a tuple (e1, e2, b, r, alpha)
+where e1, e2 are English words, b is a bit-string of length n, r is an integer specifying the end-point of the last phrase in the state, and the alpha is the score for the state.
+
+The initial state is
+q0 = (*, *, 0^n, 0, 0)
+
+States, and the Search Space
+(*, *, 0000000, 0, 0) -> (we, must, 1100000, 2, -1.5) Using (1, 2, we must)
+and so on
+
+Translation problem is converted to the problem of searching the state graph to the final state having highest score.
+
+Transitions:
+We have ph(q) for any state q, which returns set of phrases that are allowed to follow state q = (e1, e2, b, r, alpha)
+For a phrase p to be a member of ph(q), it must satisfy
+a. p must not overlap with the bit string b, we need bi = 0 for i belongs to s(p) ... t(p)
+b. The distortion limit must not be violated. |r + 1 - s(p)| <= d
+
+In addition, we define next(p, q) to be the state formed by combining state q with state p.
+
+The next function:
+Formally, if q = (e1, e2, b, r, alpha) and p = (s, t, epsilon1 ... epsilon_m), then
+next(q, p) is the state q' = (e1', e2', b', r', alpha') defines as follows:
+a. First, for convenience, define e-1 = e1, e0 = e2
+b. Define e1' = epsilon_m-1, e2' = epsilon_m
+c. Define bi' = 1 for i belongs to {s ... t}. Define bi' = bi for i doesn't belongs to {s ... t}
+d. Define r' = t
+e. Define alpha' = alpha + g(p) + Sigma log q(epsilon_i|epsilon_i-2, epsilon_i-1) + eta * |r + 1 - s|
+
+The Equality function:
+The function eq(q, q') returns true or false
+Assuming q = (e1, e2, b, r, alpha), and q' = (e1', e2', b', r', alpha'),
+eq(q, q') is true if and only if e1 = e1', e2 = e2', b = b', r = r'
+
+The Decoding Algorithm:
+Inputs: sentence x1 ... xn. Phrase-based model (L, h, d, eta)
+The phrase-based model defines the functions ph(q) and next(q, p)
+Initialisation: set Q0 = {q0}, Qi = Null for i = 1 to n
+For i = 0 to n-1
+do for each state q belongs to beam(Qi), for each phrase p belongs to ph(q)
+	1. q' = next(q, p)
+	2. Add(Qi, q', q, p) where i = len(q')
+Return highest scoring state in Qn. Backpointers can be used to find the underlying sequence of phrases(and the translation)
+
+Definition of Add(Q, q', q, p)
+if there is some q'' belongs to Q such that eq(q'', q') = true
+	if alpha(q') > alpha(q'')
+		Q = {q'} U Q \ {q''}
+		set bp(q') = (q, p)
+	else
+		return
+else
+	Q = Q U {q'}
+	set bp(q') = (q, p)
+
+Definition of beam(Q)
+Define alpha* = max alpha(q)
+i.e alpha* is the highest score for any state in Q.
+
+Define beta >= 0 to be beam width parameter,
+then, beam(Q) = {q belongs to Q: alpha(q) >= alpha* - beta}
