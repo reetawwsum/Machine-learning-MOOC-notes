@@ -1080,3 +1080,48 @@ We can come up with practically any features regarding history/tag pairs.
 For a given history x belongs to X, each label in Y is mapped to a different feature vector.
 f(x, y) = 1000010001...
 Sparse feature values
+
+Parameters Vectors:
+Given features fk(x, y) for k = 1 to m
+also define a parameter vector v belongs to R^m
+Each (x, y) pair is then mapped to a "score"
+v.f(x, y) = Sigma vk fk(x, y)
+
+Log-linear model (Using Softmax function):
+p(y|x; v) = e^(v.f(x, y))/Sigma e^(v.f(x, y'))
+
+Why the name log-linear model:
+log p(y|x; v) = v.f(x, y) - log Sigma e^(v.f(x, y'))
+
+Parameter estimation in log-linear models:
+
+Maximum-Likelihood Estimation
+Given training sample:
+(xi, yi) for i = 1 to n, each (xi, yi) belongs to X, Y
+v = arg max L(v)
+where
+L(v) = Sigma log(p(yi|xi; v)) = Sigma v.f(xi, yi) - Sigma log Sigma e^(v.f(xi, y'))
+
+L(v) is a concave function; hence having same global and local optima. Any hill climbing function will work.
+
+Gradient descent method to find the arg max L(v)
+Initialisation: v = 0
+Iterate until convergence:
+Calculate delta = dL(v)/dv
+Calculate Beta* = arg max L(v + Beta delta)
+Set v <- v + beta delta
+
+Conjugate Gradient Methods:
+LBFGS
+
+Smoothing-Regularization in log-linear models:
+Due to same positive examples in training data, vk tends to go to infinity, which doesn't helps in making the model generalised.
+
+Regularization:
+a. Modified Loss function (-lambda/2 Sigma vk^2)
+b. Run conjugate gradient method as before.
+c. Adds a penalty for large weights.
+
+Using log-linear model for trigram model.
+
+====================================================================================================================
