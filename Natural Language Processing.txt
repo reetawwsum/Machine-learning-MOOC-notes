@@ -1009,3 +1009,74 @@ i.e alpha* is the highest score for any state in Q.
 
 Define beta >= 0 to be beam width parameter,
 then, beam(Q) = {q belongs to Q: alpha(q) >= alpha* - beta}
+
+==================================================================================================================================
+
+Week 7
+======
+
+Log-Linear Models
+=================
+
+Application of Log-Linear Models:
+
+1. The Language Modeling Problem
+wi is the ith word in a document
+Estimate a distribution p(wi|w1, w2, ... wi-1) given previous "history" w1 ... wi-1
+
+For e.g
+The meaning of life is wi
+Here wi is filled using distribution from language model.
+
+a. Trigram Estimate
+Cons:
+Makes use of only bigram, trigram, unigram estimates
+Many other "features" of w1 ... wi-1 may be useful.
+
+2. Part-of-Speech Tagging
+Input: Sequence of Words
+Output: Sequence of tags from Part-of-Speech
+
+The task:
+p(ti|t1 ... ti-1, w1 ... wn)
+Again, many other "features" may be useful.
+
+The General Problem:
+We have some input domain X
+Have a finite label set Y
+Aim is to provide a conditional probability p(y|x) for any x, y where x belongs to X, and y belongs to Y
+
+Language Modeling Problem
+p(wi|w1 ... wi-1)
+
+Feature Vector Representations:
+A feature is a function fk(x, y) belongs to R
+(Often binary features or indicator functions)
+fk(x, y) belongs to {0, 1}
+
+Say we have m features fk for k = 1 to m
+For e.g
+Trigram feature
+f(x, y) = {1 if y = model, wi-2 = any, wi-1 = statistical
+		   0 otherwise}
+
+In practice, we would probably introduce one trigram feature for every trigram seen in the training data
+fN(u, v, w)(x, y) = {1 if y = w, wi-2 = u, wi-1 = v
+					 0 otherwise}
+
+and N(u, v, w) is a function that maps each (u, v, w) trigram to a different integer.
+
+The POS-tagging example:
+Each x is a "history" of the form <t1, ... ti-1, w1, ... wn, i>
+Each y is a POS tag, such as NN, NNS, Vt, Vi, ...
+We have m features fk(x, y) for k = 1 to m
+
+Word/tag features - wi is base and y = Vt
+Spelling features - wi ends in ing and y = VBG
+Contextual features - if <ti-2, ti-1, y> = <DT, JJ, Vt>
+
+The final result:
+We can come up with practically any features regarding history/tag pairs.
+For a given history x belongs to X, each label in Y is mapped to a different feature vector.
+f(x, y) = 1000010001...
+Sparse feature values
