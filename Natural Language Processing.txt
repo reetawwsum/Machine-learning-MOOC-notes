@@ -1309,3 +1309,84 @@ d. A check = no / check = yes decision
 Step4: The Search Problem - Beam search
 
 =============================================================================================================
+
+Week 9
+======
+
+Unsupervised Learning Brown Clustering
+======================================
+
+The Brown Clustering Algorithm:
+Input: a (large) corpus of words
+Output1: a partition of words into word clusters
+Output2: (generalisation of 1): a heirarchical word clustering
+
+The intuition:
+Similar words appear in similar contexts.
+More precisely: similar words have similar distributions of words to their immediate left and right.
+
+The Formulation:
+V is the set of all words seen in the corpus w1 ... wt
+Say C: V -> {1 ... k} is a partition of the vocabulary into k classes.
+
+The model:
+p(w1 ... wt) = Pie p(wi|wi-1) = Pie e(wi|C(wi)) * q(C(wi)|C(wi-1))
+
+Better way
+log p(w1 ... wt) = Sigma log (p(wi|wi-1) = Pie e(wi|C(wi)) * q(C(wi)|C(wi-1)))
+
+A Brown clustering model consists of:
+a. A vocabulary V
+b. A function C: V -> {1 ... k}
+c. A parameter e(v|c) for every v belongs to V, c belongs to {1 ... k}
+d. A parameter q(c'|c) for every c', c belongs to {1 ... k}
+
+Measuring the quality of C:
+Quality(C) = Sigma log e(wi|C(wi)) q(C(wi)|C(wi-1))
+		   = Sigma Sigma p(c, c') log p(c, c')/p(c)p(c') + G
+
+Here,
+p(c, c') = n(c, c')/Sigma n(c, c'), p(c) = n(c)/Sigma n(c)
+
+where n(c) is the number of times class c occurs in the corpus
+n(c, c') is the number of times c' is seen following c, under the function C
+
+A First algorithm:
+We start with |V| clusters; each word gets its own cluster
+Our aim is to find k final clusters
+
+We run |V| - k merge steps:
+do At each merge step we pick two clusters ci and cj, and merge them into a single cluster
+We greedily pick merges such that Quality(C) is maximized at each step
+
+Running time: 
+Naive: O(|V|^5). 
+Improved algorithm gives O(|V|^3)
+
+A second algorithm:
+Parameter of the approach is m (for e.g m = 1000)
+Take the top m most frequent words, put each into its own cluster, c1 ... cm
+for i = (m+1) to |V|
+do Create a new cluster, cm+1, for the ith most frequent word. We now have m + 1 clusters
+   Choose two clusters from c1 ... cm+1 to be merged; pick the merge that gives a maximum value for Quality(C)
+
+Carry out (m-1) final merges, to create a full heirarchy.
+
+Running time:
+O(|V|m^2 + n) where n is corpus length
+
+Application:
+
+a. Name tagging with Word Clusters and Discriminative Training
+Using heirarchical bit strings found by the unsupervised word clustering.
+
+Using Active learning along with word clustering to increase the accuracy
+
+Active learning:
+Choose to label the most "Useful" example at each stage
+
+Best model with name tagging:
+Discriminative + Clusters + Active
+
+Global Linear Models (GLMs)
+===========================
