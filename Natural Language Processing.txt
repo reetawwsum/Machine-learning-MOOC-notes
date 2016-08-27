@@ -1238,4 +1238,74 @@ Line Features to use in Log-linear model
 
 MEMM has precision of 0.867 and recall of 0.681
 
-=======================================================================================
+Log-linear Models for History-based Parsing
+===========================================
+
+How do we define p(T|S) if T is a parse tree (or another structure)
+S = w[1:n]
+
+A general approach:
+Step1: represent a tree as a sequence of decisions d1 ... dm
+T = <d1, d2 ... dm>
+
+Step2: the probability of a tree is
+p(T|S) = Pie p(di|d1 ... di-1, S)
+
+Step3: Use a log-linear model to estimate
+p(di|d1 ... di-1, S)
+
+Step4: Search arg max p(T|S)
+
+Represent a tree as a sequence of decisions:
+Three layers of Structure
+1. Part-of-Speech tags
+2. Chunks
+3. Remaining structure
+
+Layer 1:
+Part-of-Speech tags
+
+First n decisions are tagging decisions.
+
+Layer 2:
+Chunks
+
+Chunks are defined as any phrase where all children are part-of-speech tags.
+
+Next n decisions are chunk tagging decisions.
+
+Layer 3:
+Remaining structure
+
+Alternate between two classes of actions:
+a. Join(X) or Start(X), where X is a label
+b. Check = Yes or Check = No
+
+Check = Yes takes previous Join or Start action, and converts it into a completed constituent.
+
+The Final sequence of decisions:
+<d1 ... dm> = < Level1 Level2 Level3 >
+
+For e.g < DT NN Vt ...
+		Start(NP) Join(NP) Other ...
+		Start(S) Check = No Start(Vp) ... >
+
+Step3: Use a log-linear model to estimate
+p(di|d1 ... di-1, S)
+
+p(di|d1 ... di-1, S) = e^(f(<d1 ... di-1, S>, di) * v) / Sigma e^(f(<d1 ... di-1, S>, d) * v)
+
+<d1 ... di-1, S> is the history
+di is the outcome
+f maps a history/outcome pair to a feature vector
+v is the parameter vector
+
+f is defined differently depending on whether next decision is:
+a. A tagging decision
+b. A chunking decision
+c. A start/join decision after chunking
+d. A check = no / check = yes decision
+
+Step4: The Search Problem - Beam search
+
+=============================================================================================================
