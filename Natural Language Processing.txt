@@ -1125,3 +1125,117 @@ c. Adds a penalty for large weights.
 Using log-linear model for trigram model.
 
 ====================================================================================================================
+
+Week 8
+======
+
+Log-linear Models for Tagging (MEMMs) - Maximum-Entropy Markov Models
+=====================================================================
+
+Log-linear models are also known as Maximum-entropy models.
+
+Part of Speech tagging:
+Input: Sequence of words
+Output: Sequence of part of speech tags
+
+Name-Entity Recognition:
+Input: Sequence of words
+Output: Sequence of entity tags
+
+Log-linear models for Tagging:
+We have an input sentence w[1:n] = w1 ... wn
+We have a tag sequence t[1:n] = t1 ... tn
+We'll use an log linear model to define
+p(t1 ... tn|w1 ... wn)
+Then,
+the most likely tag sequence for w[1:n] is
+t*[1:n] = arg max p(t[1:n]|w[1:n])
+
+How to model p(t[1:n]|w[1:n])?
+A Trigram Log-linear models:
+p(t[1:n]|w[1:n]) = Pie p(tj|w1 ... wn, t1 ... tj-1) // Chain rule
+				 = Pie p(tj|w1 ... wn, tj-2, tj-1)  // Independence assumptions
+
+Hence,
+p(tj|w1 ... wn, t1 ... tj-1) = p(tj|w1 ... wn, tj-2, tj-1)
+
+Representations:
+A history is a 4-tuple <t-2, t-1, w[1:n], i>
+i is the index of the word to be tagged
+X is the set of all possible histories.
+
+Feature Vector Representations:
+We have some input domain X, and a finite label set Y.
+Aim is to provide a conditional probability p(y|x) for any x belongs to X, and y belongs to Y
+
+A feature is a function f: X * y -> R
+Often binary features {0, 1}
+
+Say we have m features fk for k = 1 to m
+A feature vector f(x, y) belongs to R^m
+
+For e.g
+f1(h, t) = {1 if current word wi is base and t = Vt
+			0 otherwise}
+
+Word/tag features
+Spelling features
+Contextual features
+
+We also have a parameter vector v belongs to R^m
+
+p(y|x; v) = e^(v.f(x, y))/Sigma e^(v.f(x, y'))
+
+To train a log-linear model, we need a training set (xi, yi) for i = 1 to n. Then search for
+v* = arg max (Sigma log p(yi|xi; v)) - lambda/2 Sigma vk^2
+Training set is all history/tag pairs seen in the training set.
+
+The Viterbi Algorithm:
+Problem: for an input w1 ... wn, find
+arg max p(t1 ... tn|w1 ... wn)
+
+We assume that p takes the form
+p(t1 ... tn|w1 ... wn) = Pie q(ti|ti-2, ti-1, w[1:n], i)
+
+Define n to be length of the sentence
+Define
+r(t1 ... tk) = Pie q(ti|ti-2, ti-1, w[1:n], i)
+
+Define a dynamic programming table
+table(k, u, v) = maximum probability of a tag sequence ending in tags u, v at position k
+that is,
+table(k, u, v) = max r(t1 ... tk-2, u, v)
+
+A recursive definition:
+Base case:
+table(0, *, *) = 1
+
+Recursive definition:
+For any k belongs to {1 ... n} for any u belongs to Sk-1, and v belongs to Sk
+table(k, u, v) = max (table(k-1, t, u) * q(v|t, u, w[1:n], k))
+where Sk is the set of possible tags at position k
+
+Input: a sentence w1 ... wn, log-linear model that provides q(v|t, u, w[1:n], i) for any tag-trigram t, u, v for any i belongs to {1 ... n}
+
+Initialisation:
+Set table(0, *, *) = 1
+
+Algorithm:
+for k = 1 to n
+do for u belongs to Sk-1, v belongs to Sk
+	do table(k, u, v) = max (table(k-1, t, u) * q(v|t, u, w[1:n], k))
+	   bp(k, u, v) = arg max (table(k-1, t, u) * q(v|t, u, w[1:n], k)))
+
+Set (tn-1, tn) = arg max(u, v) table(n, u, v)
+for k = (n - 2) to n
+do tk = bp(k+2, tk+1, tk+2)
+
+return the tag sequence t1 to tn
+
+Application: FAQ Segmentation
+
+Line Features to use in Log-linear model
+
+MEMM has precision of 0.867 and recall of 0.681
+
+=======================================================================================
