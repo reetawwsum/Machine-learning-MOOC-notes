@@ -1560,3 +1560,61 @@ Performance: 2.89% error as compared to 3.28% error in log-linear model.
 
 GLMs for Dependency Parsing
 ===========================
+
+Unlabeled Dependency Parses:
+root John saw a movie
+
+root is a special root symbol
+Each dependency is a pair (h, m) where h is the index of a head word, m is the index of the modifier word.
+Dependencies in above example are (0, 2) (2, 1) (2, 4) and (4, 3)
+
+Dependency Parsing Problem:
+Input: Sequence of words
+Output: Dependency pairs
+
+Conditions on Dependency Structures:
+a. The dependency arcs form a directed tree, with the root symbol at the root of the tree.
+b. There are no "crossing dependencies".
+
+Non-projective structures are models which allow "crossing dependencies".
+
+Supervised learning problem:
+Extract dependency structures from treebanks.
+
+Treebank -> Dependency banks using Lexicalisation
+
+Efficiency of Dependency Parsing:
+Unlabeled dependency parsing is O(n^3) using dynamic programming
+
+GLM for Dependency Parsing:
+x is a sentence
+GEN(x) is set of all dependency structures for x
+f(x, y) is a feature vector for a sentence x paired with a dependency parse y.
+
+Local feature vectors:
+f(x, y) = Sigma g(x, h, m) where g(x, h, m) maps a sentence x and a dependency (h, m) to a local feature vector.
+
+g1(x, h, m) = 1 if xh = saw, and xm = movie.
+g2(x, h, m) = 1 if POS(h) = VBD, POS(m) = NN
+Unigram features
+Bigram features
+Contextual features
+In-between features
+
+To run the perceptron algorithm, we must be able to calculate
+F(x) = arg max w . f(x, y)
+
+Using local features
+F(x) = arg max Sigma w . g(x, h, m) // Using dynamic programming
+
+Performance: 91.5 % as compared to 91.4 % of Lexicalised PCFG, but with lower running time of O(n^3)
+
+Extensions:
+2nd order dependency parsing
+Non-projective dependency structures
+
+Other options for parameter estimation:
+Conditional random fields ("giant" log-linear models, gradient ascent for parameter estimation)
+Large-margin methods (Related to SVM)
+
+=======================================================================================================================
