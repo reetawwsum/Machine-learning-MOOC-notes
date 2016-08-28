@@ -1390,3 +1390,112 @@ Discriminative + Clusters + Active
 
 Global Linear Models (GLMs)
 ===========================
+
+Supervised learning in Natural Language:
+General task: induce a function F from members of a set X to members of a set Y. For e.g
+
+Problem 	x belongs X y belongs Y
+Parsing 	sentence 	parse tree
+Translation French      English
+Tagging 	sentence 	sequence of tags
+
+The Models so far:
+Most of the models we've seen so far are history-based models:
+a. We break structures down into a derivation, or sequence of derivation.
+b. Each decision has an associated conditional probability.
+c. Probability of structure is a product of decision probabilities.
+d. Parameter values are estimated using variants of maximum-likelihood estimation.
+e. Function F: X -> Y is defined as
+F(x) = arg max p(x, y; Theta) or F(x) = arg max p(y|x; Theta)
+
+For e.g
+PCFG
+Log-linear taggers
+
+A new set of techniques: Global Linear Models
+We'll move away from history-based models, i.e No idea of a "derivation" or attaching probability to "decisions"
+Instead we'll have feature vectors over entire structures "Global features"
+
+Motivation:
+Freedom in defining features
+
+A need for flexible features:
+Parallelism in coordination
+Semantic features
+
+Three components of Global Linear Models:
+1. f is a function that maps a structure (x, y) to a feature vector f(x, y) belongs to R^d
+2. GEN is a function that maps an input x to a set of candidates GEN(x)
+3. v is a parameter vector (also a member of R^d)
+
+Training data is used to set the value of v.
+
+Components:
+1. f
+f maps a candidate to a feature vector belongs to R^d
+f defines the representation of a candidate
+
+Features:
+A "feature" is a function on a structure. For e.g
+h(x, y) = Number of times a -> b c is seen in (x, y)
+
+Feature vectors:
+A set of functions h1 ... hd define a feature vector
+f(x) = <h1(x), h2(x) ... hd(x)>
+
+2. GEN
+GEN enumerates a set of candidates for a sentence. For e.g
+Parsing: GEN(x) is the set of parses for x under a grammar
+Translation: GEN(x) is the set of all possible English translations for the French sentence x.
+
+3. v
+v is a parameter vector belongs to R^d
+f and v together maps a candidate to a real-valued score.
+
+Putting it all together:
+X is set of sentences, Y is set of possible outputs.
+Need to learn a function F: X -> Y
+GEN, f, v define
+F(x) = arg max f(x, y) . v for all y belongs to GEN(x)
+
+Choose the highest scoring candidate as the most plausible structure.
+
+End to end model:
+Sentence -> GEN -> Different parse trees -> Each parse tree is converted to feature vectors using f -> Each feature vector is multiplied by v to get the maximum scoring feature vector.
+
+Hence, v plays the crucial role in selecting the final parse trees.
+
+Application:
+a. Reranking Approaches to Parsing:
+
+Use a baseline parser (Lexicalised PCFG) to produce top N parses for each sentence in training and test data.
+GEN(x) is the top N parses for x under the baseline parser
+
+Supervision:
+for each xi take yi to be the parse that is "closest" to the treebank parse in GEN(x)
+
+The Representation f:
+Each component of f could be essentially any feature over parse trees. For e.g
+f1(x, y) = log probability of (x, y) under the baseline model
+f2(x, y) = Parallelism feature
+
+A variant of Perceptron Algorithm:
+
+Inputs: Training set (xi, yi) for i = 1 to n, T is number of epochs
+
+Initialisation: v = 0
+
+Define: F(x) = arg max f(x, y) . v for y belongs to GEN(x)
+
+Algorithm:
+	for t = 1 to T, i = 1 to n
+	do zi = F(xi)
+	if (zi != yi)
+	then v = v + f(xi, yi) - f(xi, zi)
+
+Output: Parameters v
+
+Reranked models scored 89.5 % as compared to 88.2 % from Lexicalised PCFG
+With better features, better baseline model, these models can achieve 91 % accuracy.
+
+================================================================================================================
