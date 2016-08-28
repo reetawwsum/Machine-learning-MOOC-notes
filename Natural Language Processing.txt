@@ -1499,3 +1499,64 @@ Reranked models scored 89.5 % as compared to 88.2 % from Lexicalised PCFG
 With better features, better baseline model, these models can achieve 91 % accuracy.
 
 ================================================================================================================
+
+Week 10
+=======
+
+GLMs for Tagging
+================
+
+The Perceptron Algorithm for Tagging:
+Tagging Problem:
+Input: Sequence of words
+Output: Sequence of tags
+
+Models:
+a. HMM
+b. Log-linear models
+c. GLMs
+
+Input x are sentences w[1:n] = {w1 ... wn}
+Define T to be set of all possible tags
+GEN(w[1:n]) = T^n i.e all tag sequences of length n
+
+Local Feature-Vector Representations:
+Take a history/tag pair (h, t)
+gs(h, t) for s = 1 to d are local features representing tagging decision t in context h
+Word/tag features
+Contextual features
+
+Define global features through global features:
+f(w[1:n], t[1:n]) = Sigma g(hi, ti)
+where ti is the ith tag, and hi is the ith history.
+
+Typically, local features are indicator features.
+and global features are then counts.
+
+Putting it all together:
+GEN(w[1:n]) is the set of all tagged sequences of length n
+GEN, f, v define
+F(w[1:n]) = arg max v . f(w[1:n], t[1:n])
+		  = arg max v . Sigma g(hi, ti)
+		  = arg max Sigma v . g(hi, ti)
+
+Dynamic Programming can be used to find the arg max.
+
+Training a Tagger using the Perceptron Algorithm:
+
+Inputs: Training set (wi, ti) for i = 1 to n
+
+Initialisation: v = 0
+
+Algorithm:
+	for t = 1 to T, i = 1 to n
+	do z[1:n] = arg max v . f(wi, ui) // z[1:n] can be calculated with dynamic programming.
+	if (zi != ti)
+	then v = v + f(wi, ti) - f(wi, zi)
+
+Output: Parameter vector v
+
+Performance: 2.89% error as compared to 3.28% error in log-linear model.
+
+GLMs for Dependency Parsing
+===========================
