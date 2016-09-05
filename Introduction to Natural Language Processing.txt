@@ -1,0 +1,188 @@
+Introduction to Natural Language Processing
+===========================================
+
+Week 1
+======
+Introduction 1/2
+
+NLP is the study of the computational treatment of natural (human) language.
+
+Computers to understand (and generate) human language.
+
+Modern application:
+Search engines
+Question Answering (IBM's Watson)
+Natural language assistants (Siri)
+Translation Systems (Google Translate)
+News digest (Yahoo)
+
+NLP draws on research in
+a. Linguistics
+b. Theoretical Computer Science
+c. Mathematics
+d. Statistics
+e. AI
+f. Psychology
+g. Databases, etc.
+
+Goals of this class:
+a. Understand that language processing is hard.
+b. Understand they key problems in NLP.
+c. Learn about the methods used to address these problems.
+d. Understand the limitations of these methods.
+
+Language and Communication:
+a. Speaker
+- Intention (goal, shared knowledge, and beliefs)
+- Generation (tactical)
+- Synthesis (text or speech)
+
+b. Listener
+- Perception
+- Interpretation (syntactic, semantic, pragmatic)
+- Incorporation (internalization, understanding)
+
+c. Both
+- Context (grounding)
+
+Basic NLP Pipeline:
+(U)ndestanding & (G)eneration
+Language ---- (U) ---> Computer --- (G) ----> Language
+
+Genres of Text:
+Blogs, emails, press releases, chat, debates, etc
+Scientific research papers, fiction books, Poetry
+
+Ambiguous nature of sentences results in NLP hard problems.
+a. Lexical Ambiguity
+b. Structural Ambiguity
+c. Scope Ambiguity
+
+Structure of the course:
+a. Four major parts.
+	i. Linguistic, mathematical, and computational background.
+	ii. Computational models of morphology, syntax, semantics, discourse, pragmatics.
+	iii. Core NLP technology: parsing, POS tagging, text generation, etc.
+	iv. Applications: text classification, machine translation, information extraction, etc
+
+b. Three major goals
+	i. Learn the basic principles and theoretical issues underlying NLP.
+	ii. Learn techniques and tools used to develop practical, robust systems.
+	iii. Gain insight into some open research problems in NLP.
+
+Why NLP is hard?
+Metaphorical sentences are hard for NLP
+For e.g Time flies like an arrow.
+
+Common sense is hard for NLP machines
+For e.g Each American has a mother. (Multiple mothers)
+Each American has a president. (Single president)
+
+Syntax error
+* Little a has Mary lamb.
+
+Semantic error
+? Colorless green ideas sleep furiously.
+
+Ambigous words.
+
+Others ambiguity:
+Morphological ambiguity (Structure of a sentence)
+Phonetic ambiguity
+Part of Speech
+Syntactic
+PP attachment
+Sense
+Modality
+Subjectivity
+CC attachment
+Negation
+Referential
+Reflexive
+Ellipsis and parallelism
+Metonympy (the substitution of the name of an attribute or adjunct for that of the thing meant)
+
+Other Sources of Difficulties:
+Non-standard, slang, and novel words
+Complex sentences
+Humor and sarcasm
+Absense of world knowledge
+Semantics and pragmatics
+
+Synonyms and Paraphrases
+
+Most of the ambiquity are fairly common sense, which computers doesn't posses.
+
+Linguistic knowledge:
+a. Constituents
+For e.g Children eat pizza or They eat pizza.
+
+b. Collocations
+For e.g red wine, but not brown wine
+
+How to get this knowledge in the system:
+- Manual rules
+- Automatic acquire from large text collections (corpora)
+
+Knowledge about language:
+a. Phonetics and phonology: the study of sound
+b. Morphology: the study of word components
+c. Syntax: the study of sentence and phrase structure
+d. Lexical semantics: the study of meanings of words
+e. Compositional semantics: how to combine words
+f. Pragmatics: how to accomplish goals
+g. Discourse conventions: how to deal with units larger than utterances
+
+How to store language knowledge:
+Finite-state automata
+Grammars
+Complexity
+Dynamic Programming
+
+Mathematics and Statistics:
+Probability
+Statistical Models
+Hypothesis testing
+Linear algebra
+Optimization
+Numerical methods
+
+Mathematical and Computational tools:
+Language models
+Estimation methods
+Context-free Grammar (CFG)
+Hidden Markov Models (HMM)
+Conditional Random Fields (CRF)
+Generative/discriminative models
+Maximum entropy models
+
+Statistical Techniques:
+Vector space representation for WSD
+Noisy channel models for MT
+Graph-based Random walk methods for sentiment analysis
+
+Aritficial Intelligence:
+Logic
+Agents
+Planning
+Constraint satisfaction
+Machine learning
+
+Linguistics:
+IPA Chart for language pronouncation
+Languages are related, all derived from Proto-Indo-European Langauge (PIE)
+
+Language changes over time.
+
+Diversity of languages:
+Absence of Articles
+Cases
+Sound systems
+Social status
+
+NACLO Problems
+
+Language Universals:
+Unconditional and conditional types of universals; common in all languages.
+
+==================================================================================
