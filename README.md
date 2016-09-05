@@ -10,6 +10,7 @@ Notes from various machine learning MOOC
 5. Neural Networks for Machine Learning (University of Toronto), Coursera
 6. Convolutional Neural Networks for Visual Recognition (Stanford CS231n), Stanford OCW
 7. Natural Language Processing (Columbia University), Coursera
+8. Introduction to Natural Language Processing (University of Michigan), Coursera
 
 ## License
 [The MIT License (MIT)](LICENSE)
