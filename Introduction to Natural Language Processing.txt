@@ -186,3 +186,109 @@ Language Universals:
 Unconditional and conditional types of universals; common in all languages.
 
 ==================================================================================
+
+Week 2
+======
+Introduction 2/2
+
+Part of Speech:
+Noun, pronoun, articles, adjectives, adverb, etc.
+
+Computers see text that they don't really understand.
+They have to use some prior knowledge.
+They reason probabilistically.
+They use context.
+They can be wrong.
+
+Morphology and the Lexicon:
+
+In linguistics, morphology is the study of words, how they are formed, and their relationship to other words in the same language. It analyzes the structure of words and parts of words, such as stems, root words, prefixes, and suffixes.
+
+Mental Lexicon consits of meaning of word, its pronounciation, part of speech.
+Without these, morphology of words are very important.
+Intuition and productivity also plays a vital role.
+
+Morphological Analysis:
+sleeps = sleep + V + 3P + SG
+done = do + V + PP
+
+Semantics:
+Lexical and compositional semantics
+Lexical is meaning of individual words, and compositional is understanding the meaning of sentence based on meaning of components.
+
+Pragmatics:
+The study of how knowledge about the world and language conventions interact with literal meaning.
+
+Text Similarity:
+Similarity dataset consits of two words and a similarity score given by human judgements.
+Word2vec model is used for text similarity.
+
+Many types of similarity:
+Morphological
+Spelling
+Synonymy
+Homophony
+Semantic
+Sentence (Paraphrases)
+Document
+Cross-lingual
+
+Morphological similarity: Stemming:
+Word with the same root.
+
+To stem a word is to reduce it to a base form, called the stem, after removing various suffixes and endings and, sometimes, performing some additional transformations.
+
+Porter's stemming method is a rule based algorithm.
+The method is not always accurate.
+The measure of a word is an indication of the number of syllables in it.
+Porter's algorithm use measure of a word to convert it into stem using various steps.
+
+Spelling Similarity: Edit Distance:
+It can be achieved using Edit operations.
+
+Levenshtein Method:
+Based on Dynamic Programming
+Insertion, deletion, and substitutions have cost 1.
+
+Recursive Relation:
+s1(i) - ith char in string s1
+s2(j) - jth char in string s2
+D(i, j) - edit distance between a prefix of s1 of length i and prefix of s2 of length j
+t(i, j) - cost of aligning the ith character in string s1 with jth character in string s2
+
+Recursive dependencies:
+D(i, 0) = i
+D(0, j) = j
+D(i, j) = min (D(i-1, j) + 1, D(i, j-1) + 1, D(i-1, j-1) + t(i, j))
+
+t(i, j) = 0 if s1(i) = s2(j)
+t(i, j) = 1 otherwise
+
+Other costs:
+Damerau modification
+
+Other costs includes keyboard typo and OCR mistakes.
+
+NACLO:
+Competition in Linguistics
+
+Preprocessing:
+Removing non-text
+Dealing with text encoding
+Sentence segmentation
+Normalisation
+Stemming
+Morphological analysis
+Capitalization
+Name-entity extraction
+
+Types or Tokens
+Tokenization
+
+Word segmenation in many language are very difficult.
+
+Sentence boundary Recognition:
+Decision trees
+Features
+
+=====================================================================================================
