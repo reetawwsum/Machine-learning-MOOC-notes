@@ -292,3 +292,118 @@ Decision trees
 Features
 
 =====================================================================================================
+
+Week 3
+======
+NLP Tasks and Text Similarity
+
+Semantic Similarity: Synonyms and Paraphrases
+Synonyms: Different words having similar meaning.
+
+Polysemy: is the property of words to have multiple senses. They can be used as multiple POS.
+
+Synsets: Group together all synonyms of the same word.
+
+WordNet dataset:
+Database of words and semantic relations between them.
+Tree structure of different words.
+
+Other dataset:
+EuroWordNet
+Open Thesaurus
+Freebase
+DBPedia
+BabelNet
+
+MeSH - Medical Subject Headings
+
+Thesaurus-based Word Similarity Methods:
+Path Similarity
+Version 1:
+Sim(v, w) = - pathlength(v, w)
+
+Version 2:
+Sim(v, w) = - log pathlength(v, w)
+
+Problems:
+There may be no tree for the specific domain or language.
+A specific word may not be in any tree.
+Is-A edges are not all equally apart in similarity space.
+
+Version 3:
+Sim(v, w) = - log P(LCS(v, w))
+where LCS = lowest common subsumer
+
+Least Common Subsumer of two concepts A and B is "the most specific concept which is an ancestor of both A and B", where the concept tree is defined by the is-a relation.
+
+Version 4: (Lin Similarity)
+IC(c) = - log P(c) # IC - Information Content
+Sim(v, w) = 2 * log P(LCS(v, w)) / (log P(v) + log P(w))
+
+Implemented in Python: nltk
+Usage: dog.lin_similarity(cat, brown_ic)
+
+The Vector Space model:
+Used in information retrieval to determine which document is more similar to a given query q.
+Documents and queries are representated in the same space.
+Often, the angle between two vectors is used as a proxy for the similarity of the underlying documents.
+
+Cosine Similarity:
+Normalised dot products of two vectors.
+Sim(d, q) = Sigma (di.qi) / (sqrt(Sigma (di)^2)) (sqrt(Sigma (qi)^2)) 
+
+or Jaccard coefficient
+Sim(d, q) = |d intersection q| / |d union q|
+
+Distributional Similarity:
+Two words that appear in similar contexts are likely to be semantically related.
+However, the context can be any of the following:
+a. The word before the target word.
+b. The word after the target word.
+c. Any word within n words of the target words.
+d. Any word within a specific syntactic relationship with target word.
+e. Any word within the same sentence.
+f. Any word within the same document.
+
+Dimensionality Reduction:
+
+Problems with the simple vector approaches to similarity:
+a. Polysemy (sim < cos)
+b. Synonymy (sim > cos)
+c. Relatedness
+d. Sparse matrix
+
+Eigen vectors for matrix reduction in case of square matrices.
+
+Singular Value Decomposition (SVD) in other cases.
+
+Latent Semantic Indexing (LSI):
+Dimensionality reduction = identification of hidden (latent concepts)
+Query matching in latent space.
+
+NLP Tasks:
+Part of Speech taggging
+Parsing
+Dependency Parsing
+Information Extraction
+Semantic analysis (First order logic, Inference)
+Reading comprehension
+Text Understanding
+Word Sense disambiguation
+Named Entity Recognition
+Semantic Role Labeling
+Coreference Resolution
+Question Answering
+Sentiment Analysis
+Machine Translation
+Text Summarization
+Text to Speech
+Entailment and Paraphrasing
+Dialogue System, and etc.
+
+Garden path sentences:
+For e.g
+Don't bother coming
+Don't bother coming early.
+
+=========================================================================================
