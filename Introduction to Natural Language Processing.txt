@@ -407,3 +407,144 @@ Don't bother coming
 Don't bother coming early.
 
 =========================================================================================
+
+Week 4
+======
+Syntax and Parsing Part 1
+
+Syntax:
+Grammatical rules apply to categories and groups of words, not individual words.
+
+Constituents:
+Continous, non-crossing words.
+
+Constituents test:
+a. "coordination" test
+b. "pronoun" test
+c. "question by repetition" test
+d. "topicalization" test
+e. "question" test, and etc
+
+How to generate sentences:
+One way: tree structure using grammar (CFG) rules
+
+Adjective ordering:
+det < number < size < color < purpose < noun
+
+Recursion:
+Allows to generate long sentences.
+
+Parsing:
+Associating tree structures to a sentence, given a grammar (often CFG)
+
+Application of Parsing:
+a. Grammar checking
+b. Question answering
+c. Machine translation
+d. Information extraction
+e. Speech generation, and etc
+
+Context-free Grammar:
+4-tuple (N, Sigma, R, S), where
+N = non-terminal symbols.
+Sigma = terminal symbols.
+R = set of rules alpha -> beta
+S = start symbol from N
+
+Penn Treebank dataset
+
+Leftmost derivation.
+
+Classic Parsing Methods:
+Parsing As Search
+There are two types of constraints on the parses:
+a. From the input sentence
+b. From the grammar
+
+Two general approaches to parsing:
+a. Top-down
+b. Bottom-up
+
+Bottom-up:
+explores options that won't lead to a full parse.
+
+Top-up:
+explores options that don't match the full sentence.
+
+Dynamic Programming:
+caches of intermediate results
+
+Cocke-Kasami-Younger (CKY) Parser
+based on dynamic programming, and Chomsky Normal Grammar
+
+Shift-reduce parsing:
+A bottom-up parser: tries to match the RHS of a production until it can bind an S
+Shift operation: Each word in the input sentence is pushed onto a stack.
+Reduce operation: If the top n words on the top of the stack match the RHS of a production, then they are popped and replaced by the LHS of the production
+Stopping operation: The process stops when the input sentence has been processed and S has been popped from the stack.
+
+Dynamic Programming:
+Motivation:
+a. A lot of work is repeated.
+b. Caching intermediate results improves the complexity.
+
+DP:
+Building a parse for a substring [i, j] based on all parses [i, k] and [k, j] that are included in it.
+
+Complexity:
+O(n^3)
+
+Issues with CKY:
+Weak equivalence only
+a. Same language, different structure
+b. If the grammar had to be converted to CNF, then the final parse tree doesn't match the original grammar.
+c. However, it can be converted back using a specific procedure.
+
+Syntactic ambiquity:
+a. CKY has no way to perform syntactic disambiguation.
+
+Earley Parser:
+No need to convert the grammar to CNF
+Left to right
+
+Complexity:
+Faster than O(n^3)
+
+Looks for both full and partial consituents.
+For e.g S -> Aux. NP VP
+
+When reading word k, it has already identified all hypothesis that are consistent with words 1 to k-1
+
+It uses a dynamic programming table, just like CKY
+
+Problems in dynamic programming parser:
+a. Agreement
+Many combinations of rules are needed to express agreement.
+b. Non-independence
+Use lexicalised grammar
+
+Syntax helps understand the meaning of a sentence.
+
+The Penn Treebank:
+Used for supervised learning methods.
+Size: 40k training sentences
+2400 test sentences
+
+Penn Treebank tagset
+
+Classification task:
+a. Document Retrival
+b. Part of Speech tagging
+c. Parsing
+
+Data Split:
+Training
+Validation
+Test
+
+Evaluation methods:
+a. Accuracy
+b. Precision and Recall
+c. F1: harmonic mean of precision and recall
+
+================================================================================================
