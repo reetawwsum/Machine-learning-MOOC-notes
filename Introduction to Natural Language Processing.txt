@@ -548,3 +548,176 @@ b. Precision and Recall
 c. F1: harmonic mean of precision and recall
 
 ================================================================================================
+
+Week 5
+======
+Syntax and Parsing Part 2
+
+Parsing noun sequences:
+Parsing programming languages are unambigous.
+
+Parsing human languages is ambigous:
+a. Coordination scope: Small boys and girls are playing.
+b. Prepositional phrase attachment: I saw the man with the telescope.
+c. Gaps: Mary likes Physics but hates Chemistry.
+d. Particles vs. Prepositions: She ran up a large bill.
+e. Gerund vs Adjectives: Playing cards can be expensive.
+
+Noun-noun compounds:
+Fish tank = tank that holds fish
+Fish net = net used to catch fish
+Fish soup = soup made with fish
+
+Head of the compound:
+Second word usually. 
+For e.g College junior - a kind of junior
+
+Prepositional Phrase Attachment 1/3:
+a. High (verbal): join board as director
+b. Low (nominal): is chairman of Elsevier
+
+Binary classification problem:
+Input: a prepositional phrase and the surrounding context
+Output: a binary label: 0 (high) or 1(low)
+In practice: the context consists only of four words: the preposition, the verb before the preposition, the noun before the preposition, and the noun after the preposition
+
+Dataset: RRR94 (Part of Penn treebank)
+
+Supervised learning: Evaluation
+a. Manually label a set of instances.
+b. Split the labeled data into training and testing sets.
+c. Use the training data to find patterns.
+d. Apply these patterns on the testing dataset.
+e. For evaluation: use accuracy
+
+Prepositional Phrase Attachment 2/3:
+Find the lower bound and upper bound on accuracy.
+Lower bound: Classifying everything with one class(Popular class in the test dataset).
+Upper bound: Human performance
+
+Using Linguistic knowledge to create more features.
+Using various decision rules to create a classifier.
+
+Prepositional Phrase Attachment 3/3:
+Using maximum likelihood estimate for classifying prepositional phrase attachment.
+
+Statistical Parsing:
+Need for Probabilistic Parsing:
+Need for ranking the parse trees
+
+Probabilistic Context-Free Grammars (PCFG)
+
+The probability of a parse tree t given n productions used to build it
+p(t) = Pie P(alpha_i -> beta_i)
+
+The most likely parse is
+arg max p(t)
+
+Probabilistic Parsing Methods:
+a. Probabilistic Earley algorithm
+b. Probabilistic Cocke-Kasami-Younger (CKY) algorithm
+
+Probabilistic Grammars:
+Learned from training corpus
+
+Maximum Likelihood Estimates:
+P(alpha -> beta) = Count(alpha -> beta) / Count(alpha)
+
+Lexicalised Parsing:
+Limitation of PCFG:
+a. The probabilities don't depend on the specific words.
+b. It is not possible to disambiguate sentences based on semantic information.
+
+Using head of a phrase as an additional source of information.
+
+Collin's Parser for Lexicalised Parsing
+
+Issues with Lexicalised Parsing:
+a. Sparseness of training data
+b. Combinatorial explosion
+
+Discriminative Reranking:
+A parser may return many parses of sentence, with small differences in probabilities.
+Other considerations may need to be taken into account:
+a. Parse tree depth
+b. left attachment or right attachment
+c. discourse structure
+
+Dependency Parsing:
+
+Dependency structure:
+For e.g blue house
+blue: modifier, dependent, child, subordinate
+house: head, governor, parent, regent
+
+Sentence Parsing (Starts with S)
+Dependency Parsing (Starts with verb)
+
+Techniques:
+a. Dynamic Programming O(n^5)
+CKY Parser
+
+b. Constraint based methods O(n^3)
+NP Complete problem
+
+c. Deterministic Parsing O(n^2)
+Graph-based methods
+Maximum Spanning trees
+
+English dependency trees are mostly projective (can be drawn without crossing dependencies).
+Other languages are not.
+
+Dependency parsing is equivalent to search for maximum spanning tree in a directed graph.
+
+e. Malt Parser O(n)
+Very similar to shift-reduce parsing
+
+Application:
+a. Information Extraction
+b. Dependency Kernels
+
+Alternative Parsing Formalism:
+
+Mildly Context-Sensitive Grammars:
+a. Tree Substitution Grammar (TSG)
+Terminals generate entire tree fragments.
+TSG and CFG are formally equivalent.
+
+b. Tree Adjoining Grammar (TAG)
+Like TSG, but allow adjunction
+It can generate languages like a^n b^n c^n
+For e.g
+Mary gave a book and a magazine to Chen and Mike, respectively.
+TAG is formally more powerful than CFG
+TAG is less powerful than CSG
+
+c. Combinatory Categorial Grammar (CCG)
+Complex types
+For e.g X\Y and X/Y
+These takes an argument of type Y and return an object of type X.
+X\Y - means that Y should appear on the left.
+X/Y - means that Y should appear on the right.
+
+For e.g
+I sleep
+
+CCG can generate the language a^n b^n c^n d^n
+
+Semantic Parsing:
+Associate a semantic expression with each node.
+
+For e.g
+Javier eats pizza.
+
+Parse tree
+N: Javier
+V: lambda, x, y, eat(x, y)
+N: pizza
+VP: lambda, x, y, eat(x, pizza)
+S: eat(Javier, pizza)
+
+Application:
+Question Answering
+Bots
+
+==================================================================================================
