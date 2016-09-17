@@ -845,3 +845,92 @@ Going back to the lower-order n-gram model if the higher-order model is sparse.
 
 Interpolation:
 P'(wi|wi-2, wi-1) = lambda1 * P(wi|wi-2, wi-1) + lambda2 * P(wi|wi-1) + lambda3 * P(wi)
+
+Evaluation of LM:
+a. Extrinsic
+Use in an application
+b. Intrinsic
+Cheaper
+
+Correlate the two for validation purposes.
+
+Intrinsic:
+a. Perplexity
+Average branching factor in predicting the next word.
+Lower is better
+
+b. Shannon Game
+Predicting the next word
+
+Perplexity across distribution is very different.
+Cross entropy = log (perplexity)
+
+c. Word Error rate
+Number of insertions, deletions, and substitutions.
+Same as Levenshtein Edit Distance
+
+Issues:
+Out of vocabulary words: Clustering helps
+
+Long Distance Dependencies: n gram model doesn't do much good.
+Missing syntactic information
+Missing semantic information
+
+Other models in LM:
+Syntactic models
+Caching models
+
+Word Sense Disambiguation:
+Polysemy: Words have multiple senses.
+
+Task:
+given a word
+and its context
+Output: meaning of a word from multiple meanings.
+
+Application:
+Machine Translation
+Accent restoration
+Text to speech generation
+
+Models:
+a. Dictionary Method:
+Match sentences to dictionary definitions.
+Overlap method
+
+b. Decision Lists:
+Two sense per word
+Ordered rules: collocation -> sense
+For e.g
+fish within window -> bass1
+striped bass -> bass1
+guitar within window -> bass2
+
+Classification features:
+i. Collocations
+ii. Position
+iii. Part of Speech
+iv. Nearby words
+v. Syntactic information
+
+c. K-nearest neighbor
+
+d. Bootstrapping
+Start with two senses and seeds for each sense
+For e.g plant1: leaf, plant2: factory
+Use these seeds to label the data using a supervised classifier (decision list)
+Add some of the newly labeled examples to the training data.
+
+Two principles:
+One sense per collocation
+One sense per discourse
+
+Training data for WSD:
+Senseval/Semcor
+Pseudo words
+Multilingual corpora
+
+Evaluation:
+Precision and Recall
+
+================================================================================================
