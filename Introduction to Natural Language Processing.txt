@@ -1168,3 +1168,176 @@ Recall
 F1 measure
 
 =====================================================================================================
+
+Week 8
+======
+Question Answering
+
+Siri
+Ask Jeeves (ask.com)
+WolframAlpha
+IBM Watson
+
+People ask question online
+
+Dataset:
+The Excite Corpus
+AOL corpus
+
+Question type Taxonomy:
+a. Yes/No vs wh.(who, what)
+b. Factual vs. Procedural
+c. Single vs. multiple answers
+d. Objective vs. Subjective
+e. Context specific vs. generic
+f. Known answer in the collection, y/n
+
+State of the Art:
+Question types: Mostly factual, short-answer questions
+System architecture:
+IR component
+Statistical approaches using lot of data.
+Relatively little knowledge
+
+Older Systems:
+a. BASEBALL
+b. ELIZA
+c. SHRDLU
+d. Lunar
+e. Murax
+f. START
+g. Deep Red
+h. Jupiter
+
+Evaluation of QA, System Architecture:
+
+The TREC QA evaluation
+a. MRR:
+Mean Reciprocal Rank = 1/N (Sigma 1/rank)
+
+b. TRR:
+Total Reciprocal Rank
+
+c. Confidence-weighted score
+
+Other types of questions:
+a. Definitional
+b. List
+c. Crosslingual
+d. Series
+
+Architecture:
+Many questions can be answered by traditional search engines.
+
+System components:
+a. Source identification
+b. Query modulation
+c. Document retrieval
+d. Sentence ranking
+e. Answer extraction
+f. Answer ranking
+
+Question type classification
+QA-token like place, country, person etc.
+
+UIUC papers on QA
+
+QA System Architecture:
+
+Techniques:
+a. Classification task
+b. Regular expressions
+
+Query Formulation:
+Determine which words to include in the IR query.
+
+Passage Retrieval:
+Features
+- Proper nouns that match the query
+- Near each other
+- Entities that match the expected answer type
+
+Answer Retrieval:
+Use NER (Name Entity Recognition) to identify the matching phrases.
+Features
+- Distance to query words
+- Answer type
+- Wordnet similarity
+- Redundancy
+
+Types:
+Traditional corpus based systems
+Open web based systems
+
+AnSel:
+Feature selection:
+a. Avgdst
+b. Notinq
+c. Frequency
+d. Sscore
+e. Number
+f. Rspanno
+g. Count
+h. Type
+
+IONAUT:
+Passage Retrieval
+Entity Recognition
+Entity Recognition
+
+Mulder:
+First large-scale Web QA system
+Components:
+- Maximum entropy parser
+- PC-Kimmo for unknown words
+- Link Parser
+- Google
+Tokenization
+Query transformations
+
+NSIR:
+Probabilistic phrase ranking
+Search engines
+
+AskMSR:
+Query rewriting
+Snippet retrieval
+N-gram ranking
+
+Echihabi and Marcu:
+Based on noisy channel model
+
+LCC:
+Uses logic form transformations
+Uses axioms for inference
+
+QASM:
+Noisy channel model
+Convert NL question to query
+Channel operators
+
+Ravinchandran and Hovy:
+Automatically learn surface patterns
+Starts with a seed
+Query web
+Find patterns that contain both the question and the answer terms
+
+IBM Watson:
+Uses 'DeepQA'
+16TB of RAM
+10 racks of IBM Power 750 servers running Linux
+2880 processor cores
+Operating at 80 teraflops.
+Knowledge sources:
+200 million pages of structured and unstructured content (4TB of disk storage)
+Including wikipedia, Wordnet
+Betting strategy
+Question types: 2500 of them
+
+QA challenges:
+Word sense disambiguation
+Co-reference resolution
+Semantic role labeling
+Temporal Questions
+
+==================================================================================================
