@@ -934,3 +934,237 @@ Evaluation:
 Precision and Recall
 
 ================================================================================================
+
+Week 7
+======
+Part of Speech Tagging and Information Extraction
+
+Noisy Channel Model:
+P(X, Y) = P(X) P(Y|X)
+
+It behaves like an encoder and decoder
+e -> e => f -> f => e -> e'
+
+e' = arg max P(e|f) = arg max P(e) P(f|e)
+where P(f|e) is translation model
+P(e) is language model
+
+Uses of the Noisy channel model:
+Handwriting recognition
+Text generation
+Text summarization
+Machine translation
+Spelling correction
+
+Part of Speech tagging:
+Input: Sequence of words
+Output: Sequence of POS tags
+
+POS tags:
+a. Open class:
+nouns, non-modal verbs, adjective, adverbs
+
+b. Closed class:
+Prepositions, modal verbs, conjunctions, particles
+
+Dataset
+Penn treebank
+
+Three main techniques:
+a. Rule based
+b. Machine learning (Conditional random fields, maximum entropy, Markov models)
+c. Transformation based
+
+Source of information for tagging:
+a. Lexical information
+b. Spelling
+c. Capitalization
+d. Neighboring words
+
+Evaluation:
+Baseline:
+tag each word with its most likely tag
+tag each OOV word as a noun
+around 90% accuracy
+
+Upper bound
+98% accuracy
+
+Rule based POS tagging:
+Use dictionary or finite-state transducers to find all possible parts of speech.
+Use disambiguation rules
+
+Hidden Markov Models:
+
+Markov Models:
+Sequences of random variables that aren't independent.
+For e.g Weather forecast
+
+Properties:
+a. Limited horizon
+P(Xt+1 = sk|X1, ... xt) = P(Xt+1 = sk|xt)
+
+b. Time invariant
+
+Visible MM:
+P(X1 ... Xt) = P(X1) P(X2|X1) P(X3|X1, X2) ... P(Xt|X1 ... Xt-1)
+
+Hidden MM:
+Definition
+Q: sequence of states
+O: sequence of observations
+qo, qf: special (start, final) states
+A: state transition probabilites
+B: symbol emission probabilities
+Pie: Initial state probabilities
+Mue: (A, B, Pie) = Complete probabilistic model
+
+Can be used to model state sequences and observation sequences.
+For e.g
+P(s, w) = Pie P(si|si-1) P(wi|si)
+
+The state encode the most recent history
+The transitions encode likely sequences of states.
+Use MLE to estimate the transition probabilities.
+
+Emissions:
+Estimating the estimation probabilities.
+Standard smoothing.
+Heuristics.
+
+Inference:
+Find the most likely sequence of tags, given the sequence of words.
+t* = arg max P(t|w)
+Given the model Mue, it is possible to compute P(t|w) for all values of w.
+In order to avoid too many combinations.
+a. Beam search
+b. Viterbi algorithm
+
+Viterbi algorithm:
+Dynamic Programming
+Memoization
+Backpointers
+
+HMM learning:
+a. Supervised
+- Training sequences are labeled.
+Estimate the static probabilities using MLE
+Estimate the observations probabilities using MLE
+Use smoothing
+
+b. Unsupervised
+- Training sequences are unlabeled.
+- Known number of states
+Use EM (Expectation Maximization) methods
+Forward-backward (Baum-Welch) algorithm
+
+Algorithm:
+Randomly set the parameters of the HMM.
+Until the parameters converge repeat:
+a. E step: determine the probability of the various state sequences for generating the observations
+b. M step: reestimate the parameters based on the probabilities.
+
+c. Semi-supervised
+- Some training sequences are labeled.
+
+Statistical POS tagging:
+T = arg max P(T|W)
+By Bayes' theorm:
+P(T|W) = P(T) P(W|T)/P(W)
+
+P(W) can be ignored.
+P(T) is prior, and P(W|T) is likelihood.
+
+P(W|T) = Pie P(wi|ti)
+P(T) = Pie P(ti|ti-1)
+
+Hence,
+T = arg max Pie P(wi|ti) P(ti|ti-1)
+
+Evaluating Taggers:
+Dataset:
+Training set
+Validation set
+Test set
+
+Transformation based learning:
+Keeps on transforming the tag list based on rules.
+It consists of change list and conditions.
+
+New domains:
+Lower performance
+
+Distributional clustering:
+Combine statistics about semantically related words.
+
+Information Extraction:
+Input: Unstructured or semi-structured data. For e.g news stories, papers, resumes
+Output: Entities, build knowledge base
+
+Extract:
+Named Entities
+Time
+Events
+
+It is considered as sequence labeling problem.
+
+Classification methods:
+Use the categories of the previous tokens as features in classifying the next one.
+Direction matters.
+
+Named Entity Recognition:
+a. Segmentation
+b. Classification
+
+Relation Extraction:
+Links between entities.
+
+View IE as a sequence labeling problem
+- Use HMM
+
+Use pattern
+- Use regex
+
+Use features
+- Capitalisation, digits
+
+Evaluating template-based IE:
+For each test document:
+Number of correct template extractions.
+Number of slot/value pairs extracted.
+Number of extracted slot/value pairs that are correct.
+
+Relation extraction:
+Person-person
+Person-organisation
+Organisation-organisation
+Organisation-location
+
+Core NLP task
+Used for building knowledge bases, question answering.
+
+Models:
+a. Using patterns
+b. Supervised learning
+c. Semi-supervised learning
+
+Extracting Is-A relations.
+Using patterns
+
+Supervised learning:
+Look for sentences that have two entities that we know are part of the target relation.
+Look at the other words in the sentence, especially the ones between the two entites.
+Use a classifier to determine whether the relation exists.
+
+Semi-supervised learning:
+Start with some seed (words)
+Look for other sentences with the same words.
+Look for expressions that appear nearby.
+Look for other sentences with the same expressions.
+
+Evaluation:
+Precision
+Recall
+F1 measure
+
+=====================================================================================================
