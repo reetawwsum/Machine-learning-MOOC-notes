@@ -1341,3 +1341,205 @@ Semantic role labeling
 Temporal Questions
 
 ==================================================================================================
+
+Week 9
+======
+Text Summarization
+
+Input: Paragraph
+Output: Summary of the paragraph
+
+Types:
+News summarization
+Book summarization
+Movie summarization
+Search engine snippets
+
+Genres:
+Headlines
+Outlines
+Minutes
+Biographies
+Abridgments
+Sound bites
+Movie summaries
+
+Other way to categorize summaries types:
+a. Input
+b. Output
+c. Purpose
+d. Form
+e. Dimensions
+f. Context
+
+Stages:
+Content identification
+Conceptual organization
+Realization
+
+Extractive Summarization:
+Selecting units of the original text
+Baseline: Extract the first few sentences.
+
+Models:
+a. Baxendale
+Positional method
+- Pick the first and last sentences of the paragraph.
+- Naive but decent approach.
+
+b. Luhn
+- Stemming
+- Stop word are removed
+- Frequency of content terms
+- Sentence-level significance factor
+
+c. Edmundson
+- Position and frequency
+- Cue words (bonus and stigma words)
+- Document structure
+- Linear combination of the features
+
+d. Frump
+- Knowledge based
+- Slot-filling based on UPI news stories
+- Based on 50 sketchy scripts
+- Difficult to port to other domains.
+
+e. Paice
+- Survey up to 1990
+- Problems: Lack of balance, lack of cohesion
+
+f. Brandow et al.
+- "Lead" achieves acceptability of 90% vs. 74.4% for "intelligent" summaries.
+- sentence based features
+
+g. Kupiec et al.
+- First trainable method
+- Naive Bayes classifier
+- Features: Sentence length, Presence of uppercase words, sentence position in paragraph.
+Performance:
+84% precision
+
+h. Summons
+- First work on multi-document summarization
+- Approach: 
+Knowledge based
+information extraction (MUC templates)
+Text generation
+
+i. Mitra/Allen/Salton
+- Semantic hyperlinks
+Paths linking highly connected paragraphs are more likely to contain information central to the topic of the article.
+
+j. Mani/Bloedorn
+Graph-based method for identifying similarities and differences between documents.
+Single event or sequence of events
+Content entties and relations
+
+k. Barzilay & M. Elhadad
+Lexical chains
+Wordnet based
+Types of relations: extra-strong, strong, medium strong.
+
+l. Marcu
+Focuses on text coherence
+Based on Rhetorical Structure theory
+
+m. Noisy channel model
+Gisting (OCELOT)
+g* = arg max p(g|d) = arg max p(g) . p(d|g)
+
+n. Carbonell and Goldstein
+Maximal Marginal relevance
+Greedy selection method
+Query based summaries
+
+o. Mead
+Salience-based extractive summarization
+Vector space model
+Features: position, length, centroid
+
+p. Conroy and O'Leary
+Using HMM
+Takes into account the local dependencies between sentences
+Features: Position, number of terms, similarity to document terms
+
+q. Osborne
+Don't assume feature independence
+Use maxent (log-linear) models
+Better than naive bayes
+
+r. Lexrank
+Lexical Centrality
+- Represent text as a graph
+- Graph clustering
+
+s. Gong and Liu
+Using Latent Semantic Analysis
+TFIDF weights in the matrix
+
+Summarization Evaluation:
+Criteria:
+a. Length
+b. Fidelity
+c. Salience
+d. Grammatrical
+e. Non-redundancy
+f. Structure & coherence
+
+Ideal Evaluation:
+Information content
+C = Compression ratio = |S|/|D|
+R = Retention ratio = i(S)/i(D)
+
+Types of evaluation methods:
+a. Extrinsic techniques (task-based)
+Make same decision using the summary as well as full text
+b. Intrinsic techniques
+Comparing summaries against gold standard.
+
+Metrics:
+a. Precision and Recall, F1 Measure
+
+b. Rouge: R stands for Recall
+Rouge-n: measure of n-gram overlap between a summary and a set of reference summaries.
+Rouge-L: uses longest common subsequence instead of n-gram overlap.
+
+c. Relative Utility
+Comparing multiple gold standard summaries.
+
+Subsumption and Equivalence:
+Subsumption: If the information content of sentence a (I(a)) is contained within sentence b, then a becomes informationally redundant.
+I(a) subset I(b)
+
+Equivalence: If I(a) subset I(b) and I(b) subset I(a)
+
+Pyramid:
+Based on Semantic Content units.
+Used for multi-document summarization.
+Different surface realizations with equivalent meanings.
+
+Available Corpora:
+DUC and TAC corpora
+SummBank corpus
+SUMMAC corpus
+NY Times corpus
+
+Sentence Simplification:
+Removing some parts of sentences:
+- Quotes
+- Appositions
+- Adjective and Adverbs
+
+Application:
+Subtitling
+Headline generation
+Mobile devices
+
+Knight and Marcu:
+Use structured (syntactic) information
+Two approaches:
+Noisy channel model
+Decision based
+
+=====================================================================================================================
