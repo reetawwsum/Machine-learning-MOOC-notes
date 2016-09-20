@@ -1543,3 +1543,210 @@ Noisy channel model
 Decision based
 
 =====================================================================================================================
+
+Week 10
+=======
+Collocations and Information Retrieval
+
+Collocation:
+Phrases occur together.
+For e.g dead end, strong tea
+
+Properties:
+- Common use
+- No general syntactic or semantic rules
+- Important for non-native speakers
+
+Properties:
+a. Substitutions are usually not allowed.
+b. Language and dialect-specific
+c. Common in technical language
+d. Recurrent in context
+
+Uses:
+Diambiguation
+Translation
+Generation
+
+Types:
+a. Grammatical
+b. Semantic
+c. Flexible
+
+Collocations breaks down into Base-Collocator pairs.
+
+Extracting collocations:
+
+a. Mutual information:
+I(x;y) = log P(x, y) / P(x) P(y)
+
+Larger means stronger
+
+b. Yule's coefficient
+A: frequency of pairs involving both W and X
+B: frequency of pairs involving W only
+C: frequency of pairs involving X only
+D: frequency of pairs involving neither
+
+Y = AD-BC/AD+BC, -1 <= Y <= 1
+
+Flexible and Rigid collocations
+
+Translating Collocations:
+Don't translate word by word.
+
+Information Retrieval:
+It is about building search engines
+
+Examples:
+a. Conventional (library catalog)
+b. Text-based (Google)
+c. Image-based
+d. Question answering system
+e. Clustering systems
+
+Challenges:
+a. Dynamically generated content
+b. New pages get added all the time
+
+Characteristics of user queries:
+a. Sessions
+b. Very short queries
+c. Large number of typos
+d. Small number of popular queries
+e. No use of advanced query operators
+
+Information Retrieval:
+Baseline process
+Given a collection of documents
+And a user's query
+Find the most relevant documents
+
+Key terms:
+a. Query
+b. Document
+c. Collection
+d. Index
+e. Term
+
+Search Engine Architecture:
+Decide what to index
+Collect it
+Index it (efficiently)
+Keep the index up to date
+Provide user friendly query facilities
+
+Document Representations:
+Term-document matrix
+Document-document matrix
+
+Store document words in an Inverted Index
+For e.g
+Word: D1, D2
+Word: D3, D4
+
+Document and query are considered as vectors
+
+The matching process:
+
+a. Distance measures
+Euclidean
+Manhattan
+Word overlap
+Jaccard coefficient
+
+b. Similarity measures
+Cosine measure
+
+Positional Indexing:
+Keep track of all words and their positions in the documents
+
+Document Ranking:
+Compute the similarity between the query and each of the documents
+Use cosine similarity
+Use TF*IDF weighting
+Return the top k matches to the user
+
+Inverse document frequency (IDF):
+IDF = log (N/dk) + 1
+where
+N: number of documents
+dk: number of documents containing term k
+fk: absolute frequency of term k in document i
+wik: weight of term k in document i
+
+Evaluation of IR:
+Size of index
+Speed of indexing
+Speed of retrieval
+Accuracy
+Timeliness
+Ease of use
+Expressiveness of search language
+
+Use precision and recall over accuracy.
+
+The Sign test for comparing two search engines.
+Other test:
+Student t-test
+Wilcoxon Matched-Pairs Signed-Ranks test
+
+Text Classification:
+Assigning documents to predefined categories.
+For e.g topics, languages, users
+
+Types:
+Hierarchical vs. flat
+Overlapping or non-overlapping
+
+Techniques:
+Generative (k-nn, Naive Bayes): Model joint prob p(x, y) and use Bayesian prediction to compute p(y|x)
+Discriminative (SVM, Regression): Model p(y|x) directly.
+
+Each document is represented as vector in an n-dimensional space.
+Similar documents appear nearby in the vector space.
+
+Use MLE for training in Naive Bayes.
+
+Feature Selection: The Kie^2 test
+Compute the Kie^2 for all words and pick the top k among them.
+
+Dataset:
+20newsgroups
+Reuters-21578
+WebKB
+RCV1
+
+Other techniques:
+Decision Trees
+Linear Regression
+Perceptron Algorithm
+K-nn
+
+Text Clustering:
+Unknown number of categories
+Documents in the same cluster are relevant to the same query.
+
+Techniques:
+k-means
+
+Evaluation:
+Purity
+RAND index
+
+Heirarchical clustering
+- Single linkage
+- Complete linkage
+- Average linkage
+
+Clustering using dendrograms
+
+Information Retrieval Toolkit:
+Smart
+MG
+Lemur
+Terrier
+Clairlib
+Lucene/SOLR
+
+====================================================================================================================
