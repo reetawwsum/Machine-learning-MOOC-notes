@@ -1750,3 +1750,226 @@ Clairlib
 Lucene/SOLR
 
 ====================================================================================================================
+
+Week 11
+=======
+Sentiment Analysis and Semantics
+
+Sentiment Analysis:
+
+Research questions:
+- Subjectivity analysis
+- Polarity analysis (Positive/negative, number of stars)
+- Viewpoint analysis
+
+Sentiment target:
+- entity
+- aspect
+
+Level of granularity:
+- Document
+- Sentence
+- Attribute
+
+Opinion words:
+- Base
+- Comparative
+
+Problems:
+Subtlety
+Concession
+Manipulation
+Sarcasm and irony
+
+SA as a classification problem:
+Set of features
+- words
+- punctuation
+- phrases
+- syntax
+
+Techniques:
+MaxEnt
+SVM
+Naive Bayes
+
+Sentiment Lexicons:
+SentiWordNet
+General Inquirer
+LIWC
+MPQA subjectivity lexicon
+
+Dictionary-based Methods:
+Start from known seeds. For e.g happy, angry
+Expand using WordNet. Synonyms, hypernyms
+Random-walk based method
+
+Automatic Extraction of Sentiment words:
+Semi-supervised methods (Clustering techniques)
+
+PMI (Turney) Pointwise mutual information
+Check how often a give unlabeled word appears with a known positive word.
+PMI = log hits(word1 NEAR word2) / hits(word1) hits(word2)
+
+Semantics:
+Representing meaning
+Capturing the meaning of linguistic utterances using formal notation.
+Linguistic meaning vs. Pragmatic meaning
+
+For e.g
+I bought a book.
+x, y: Buying(x) ^ Buyer(speaker, x) ^ BoughtItem(y, x) ^ Book(y)
+Buying(Buyer = speaker, BoughtItem = book)
+
+Entailment:
+One fact follows from another.
+"All cats have whiskers" and "Martin is a cat" entail the statement "Martin has whiskers".
+
+Presupposition:
+"The Queen of Utopia is dead" presupposes that Utopia has a queen.
+
+Representing and Understanding Meaning:
+
+Understanding meaning:
+If an agent hears a sentence and can act accordingly, the agent is said to understand it.
+Understanding may involve inference and pragmatics.
+So, understanding may involve a procedure.
+
+Properties:
+Verifiability
+Unambiguousness
+Canonical form
+Expressiveness
+Inference
+
+Representing meaning:
+Use logic representations. For e.g First order logic
+Use theorm proving one statement entails other.
+
+Propositional Logic:
+The simplest type of logic
+Deals with two sentences and negation, conjunction, disjunction, implication, and biconditional between them.
+
+It can be expressed in Backus Naur Form.
+
+Semantics of Propositional logic
+
+First order logic:
+
+Pros of Propositional logic
+- Compositional
+- Declartive
+
+Cons:
+- Limited expressive power
+- Represents facts
+
+FOL:
+Used to represent
+- Objects
+- Relations
+- Functions
+
+Formula -> AtomicFormula | Formula Connective Formula | Quantifier Variable Formula | Not Formula
+AtomicFormula -> Predicate(Term)
+Term -> Function(Term) | Constant | Variable
+Connective -> AND | OR
+Quantifier
+Constant
+Variable
+Predicate
+Function
+
+Lambda Expressions:
+lambda x: x+1
+
+Knowledge Representation:
+
+Ontologies
+Categories and Objects
+Events
+Time
+Beliefs
+
+Semantics of FOL:
+FOL sentences can be assigned a value of true or false.
+For e.g ISA(Milo, Cat) = true
+
+Martin went from the kitchen to the yard.
+ISA(e, Going) ^ Goer(e, Martin) ^ Origin(e, kitchen) ^ Target(e, yard)
+
+Fluents:
+A predicate that is true at a given time: T(f, t)
+
+Use Modal logic: Possiblity, Tempora logic, Belief logic to represent time and belief
+
+Inference:
+
+Modus Ponens:
+alpha
+apha => beta
+------------
+beta
+
+For e.g
+Cat(Martin)
+Cat(x) => EatsFish(x)
+---------------------
+EatsFish(Martin)
+
+Forward Chaining: as individual facts are added to the database, all derived inferences are generated.
+Backward Chaining: starts from queries.
+
+Use FOL for inference.
+
+Universal Instantiation:
+Every instantiation of a universally quantified sentence is entailed by it.
+
+Existential Instantiation:
+
+Unification:
+If a substitution theta is available, unification is possible.
+
+Semantic Parsing:
+Converting natural language to a logical form.
+For e.g executable code for a specific application.
+
+Stages:
+Input
+Syntactic Analysis
+Semantic Analysis
+
+Compositional Semantics:
+Add Semantic attachments to CFG rules.
+Compositional semantics
+- Parse the sentence syntactically
+- Associate some semantics to each word
+- Combine the semantics of words and non-terminals recursively.
+- Until the root of the sentence.
+
+For e.g
+Input: Javier likes pizza
+Output: like(Javier, pizza)
+
+Parsing:
+- Associate a semantic expression with each node.
+Javier - N: Javier
+likes - V: lamda x, y likes(x, y)
+pizza - N: pizza
+
+VP -> V N
+VP: lambda x, pizza likes(x, pizza)
+
+S -> N VP
+S: likes(Javier, pizza)
+
+Using CCG (Combinatorial Categorial Grammar) for sematic parsing:
+CCG representations for semantics
+For e.g
+ADJ: lambda x tall(x)
+
+Other models:
+GeoQuery
+Zettlemoyer and Collins
+
+===============================================================================================================
