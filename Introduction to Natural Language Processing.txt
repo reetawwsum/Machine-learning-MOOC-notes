@@ -1973,3 +1973,180 @@ GeoQuery
 Zettlemoyer and Collins
 
 ===============================================================================================================
+
+Week 12
+=======
+Discourse, Machine Translation, and Generation
+
+Discourse Analysis:
+Issues
+a. Anaphora: Referring expression and antecedents.
+b. Coreference resolution
+
+Coreference resolution:
+Agreement constraints
+- gender, number, animacy
+Syntactic constraints
+- parallelism
+Sentence ordering
+- recency
+
+Properties for antecedent: Salience weights
+
+Recency handling: weights are cut in half after each sentence is processed.
+
+Resolution of Anaphora Procedure using Salience weights.
+
+Coherence:
+Coherent sentences are those which talk about same topic.
+
+Nucleus and Satellite:
+For e.g
+The carpenter was tired. He had been working all day.
+1st sentence: Nucleus
+2nd sentence: Satellite
+
+Coherence relations:
+a. Result
+b. Explanation
+c. Parallel
+d. Elloboration
+e. Other relations
+
+Discourse Parsing:
+Four RST relations: contrast, cause-explanation, evidence, condition, and elaboration + non-relation
+Up to 4M automatically labeled examples per relation
+Naive Bayes
+Word co-occurence features
+
+Centering:
+Goal: understand the local coherence of discourse
+Inference load associated with badly chosen referring expressions.
+Too much focus shift makes the text hard to understand.
+
+Cross-document structure (CST):
+
+Argumentative Zoning:
+Aim
+Textual
+Own
+Background
+Contrast
+Basis
+Other
+
+Local Entity Coherence:
+
+Dialogue Systems:
+Turn taking
+Default turn-taking rule
+Barge-in
+
+Conversational Implicature:
+Implicature: Meaningful inferences that the listener can make
+
+Grice's Maxims:
+Maxim of quantity
+Maxim of quality
+Maxim of relevance
+Maxim of manner
+
+Speech Acts:
+Assertives
+Directives
+Commissives
+Expressives
+Declarations
+
+Dialogue system architecture:
+Understanding
+Dialogue manager
+Task manager
+Generation
+
+Prosody:
+Properties
+- Rhythm
+- Intonation
+- Stress
+
+Used to express emotions, emphasis, etc.
+
+Machine Translation:
+
+Parallel corpora:
+The Rosetta Stone
+The Hansards Corpus
+The Bible
+
+Language Differences:
+Word Order
+Prepositions
+Inflection
+Lexical distinctions
+Multiple translation
+Vocabulary
+
+Basic Techniques:
+Direct approach - 50's, 60's
+Transfer method
+Interlingua
+
+Noisy channel methods:
+Parametric probabilistic models of language and translation
+
+e' = arg max P(f|e) P(e)
+
+IBM translation models
+Alignments
+
+Advanced Methods:
+Tree-to-tree
+Phrase-based
+Syntax-based
+Clause restructuring
+Synchronous Grammars
+
+Evaluation:
+Human judgements
+Edit costs
+BLEU
+
+Decoding:
+Find a translation that maximizes P(F|E) P(E)
+NP-complete for IBM model 1
+Use phrase translation table
+Use A*
+Use beam search
+
+Tools:
+Language Modeling toolkits: SRILM, CMULM
+Translation systems: Giza++, Moses
+Decoders: Pharaoh
+
+Text Generation:
+Process of deliberately constructing a natural language text in order to meet specified communicative goals.
+
+NLG:
+Mapping meaning to text
+Stages:
+Content selection
+Lexical choice
+Sentence structure
+Discourse structure
+
+Examples NLG system:
+FOG
+Plandoc
+
+NLG is about choices:
+Content
+Coherence
+Style
+Media
+Syntax
+Aggregation
+Referring expressions
+Lexical choice
+
+=====================================================================================================================
