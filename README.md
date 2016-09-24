@@ -11,6 +11,7 @@ Notes from various machine learning MOOC
 6. Convolutional Neural Networks for Visual Recognition (Stanford CS231n), Stanford OCW
 7. Natural Language Processing (Columbia University), Coursera
 8. Introduction to Natural Language Processing (University of Michigan), Coursera
+9. Deep Learning for Natural Language Processing (Stanford CS224d), Stanford OCW
 
 ## License
 [The MIT License (MIT)](LICENSE)
