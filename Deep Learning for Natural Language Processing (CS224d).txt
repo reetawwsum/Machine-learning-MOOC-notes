@@ -1,0 +1,86 @@
+Deep Learning for Natural Language Processing (CS224d)
+======================================================
+
+Lecture 1
+=========
+Intro to NLP and Deep Learning
+
+NLP:
+Field intersection of
+a. Computer Science
+b. AI
+c. Linguistics
+
+Goal: Computers to process or "understand" natural language in order to perform tasks.
+For e.g Question Answering
+
+Perfect language understanding is AI-Complete.
+
+NLP Levels:
+Speech -> Phonological Analysis / Text -> Tokenization
+Morphological Analysis
+Syntactic Analysis
+Semantic Analysis
+Discourse Processing
+
+Applications:
+Spell checking, keyword search
+Information Extraction
+Machine Translation, Question Answering
+
+NLP Hard:
+Complexity in representating, learning and using linguistic/situational/world/visual knowledge.
+Ambiguity
+
+Deep Learning:
+Model optimizing weights to best make a final prediction
+
+Machine learning vs Deep learning:
+Machine Learning: 90-95 percent of time is spend in describing the data with features that computer can understand.
+Deep Learning: Representation attempts to automatically learn good features or representations.
+
+Deep Learning can learn supervised as well as unsupervised.
+
+Why Deep Learning now?
+DL techniques benefit more from a lot of data.
+Faster machines and multicore CPU/GPU help DL.
+New models, algorithms, ideas.
+
+Deep Learning + NLP = Deep NP
+Combine ideas and goals of NLP and use representation learning and deep learning methods to solve them.
+
+Deep NLP levels:
+a. Phonology:
+Tradional: Phonemes
+DL: trains to predict phonemes (or words directly) from sound features and represent them as vectors.
+
+b. Morphology:
+Traditional: Morphemes; Prefix, suffix, stem
+DL: Every morpheme is a vector. A neural network combines two vectors into one vector.
+
+c. Syntax:
+Traditional: Phrases, Discrete categories like NP, VP
+DL: Every word and every phrase is a vector
+A neural network combines two vectors into one vector
+
+d. Semantics:
+Traditional: Lambda calculus; First order logic; carefully engineered functions, takes an inputs specific other functions
+DL: Every word and every phrase and every logical expression is a vector.
+A neural network combines two vectors into one vector.
+
+Applications:
+a. Sentiment Analysis:
+Traditional: Curated sentiment dictionaries combined with either bag-of-words representations or hand-designed negation features.
+DL: Same deep learning model that was used for morphology, syntax, and logical semantics can be used. RNN!
+
+b. Question Answering:
+Traditional: A lot of feature engineering to capture world and other knowledge. Regex
+DL: Same model can be used. RNN!
+
+c. Machine Translation:
+Traditional: Interlingua, IBM Model 1 & 2, Phrase based models
+DL: RNN! Sequence to sequence model.
+
+Representation for all levels: Vectors
+
+==========================================================================================================================
