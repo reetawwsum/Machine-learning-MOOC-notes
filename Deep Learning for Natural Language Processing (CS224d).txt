@@ -185,3 +185,66 @@ Generate improved performance on other tasks
 Can capture complex patterns beyond word similarity
 
 =================================================================================================================
+
+Lecture 3
+=========
+Advanced word vector representations: language models, softmax, single layer networks
+
+Word vectors:
+Define the set of all parameters in a model in terms of one long vector theta
+
+Gradient Descent:
+To minimize J(theta) over the full batch would require us to compute gradients for all windows.
+
+Updates for each element of theta:
+theta_new = theta_old - alpha d J(theta)/d(theta_old)
+
+Stochastic Gradient Descent:
+We will update parameters after each window t.
+
+Approximations: The skip-gram model
+Main idea: train binary logistic regressions for a true pair (center word and word in its context window) and a couple of random pairs.
+
+Continous bag of words model:
+Main idea: Predict center word from sum of surrounding word vectors.
+
+GloVe:
+J(theta) = 1/2 Sigma f(Pij) (ui * vj - log Pij)^2
+
+Good performance with small corpora.
+
+What to do with the two sets of vectors?
+U and V captures similar co-occurrence information. 
+Xfinal = U + V
+
+Evaluate word vectors:
+
+a. Intrinsic:
+Evaluation on a specific/intermediate subtasks
+Fast to compute
+Helps to understand the system
+
+For e.g
+Word vector analogies
+a:b :: c:?
+Human judgements
+
+b. Extrinsic:
+Evaluation on a real task
+Can take a long time to compute accuracy.
+
+For e.g
+Name-entity recognition
+
+Hyperparameters:
+Best dimensions: 300
+Window size: 8 is good for GloVe
+Wikipedia corpus is better for training, but common crawl is better.
+
+Handling ambiguity:
+Idea: Cluster word windows around words, restrain with each word assigned to multiple different clusters bank1, bank2, etc.
+
+Logistic regression: Softmax classification on word vector x to obtain probabilities for class y.
+Loss function: Cross entropy
+
+=======================================================================================================================
