@@ -84,3 +84,104 @@ DL: RNN! Sequence to sequence model.
 Representation for all levels: Vectors
 
 ==========================================================================================================================
+
+Lecture 2
+=========
+Simple Word Vector representations: word2vec, GloVe
+
+Represent meaning in a computer:
+Use a taxonomy like WordNet that has hypernyms (is-a) relationships.
+
+Problems with this discrete representation:
+Missing nuances
+Missing new words
+Subjective
+Requires human labor to create and adapt
+Hard to compute accuracy word similarity
+
+Distributional similarity based representations:
+Representing a word by means of its neighbors.
+
+How to make neighbors represent words?
+With a cooccurrence matrix X
+a. Full document: Matrix X will give general topics leading to "Latent Semantic Analysis".
+b. Window: Matrix captures syntactic (POS) and semantic information.
+
+Window size: 1
+Each word has its own matrix representation.
+Matrix consists of count of neighboring words in the window size.
+
+Problems with simple cooccurrence vectors:
+Increase in size with vocabulary
+Very high dimensional
+Classification models have sparsity issues.
+Models are less robust.
+
+Solution: Low dimensional vectors
+
+Method 1: Dimensionality Reduction on X
+Singular Value Decomposition
+
+Problems with SVD:
+Computational cost
+Bad for millions of words or documents
+Hard to incorporate new words or documents
+
+Idea: Directly learn low-dimensional word vectors
+Old ideas:
+Learning representations by back-propagating errors.
+A neural probabilistic language model
+word2vec
+
+Main idea of word2vec:
+Instead of capturing cooccurence counts directly, predict surrouding words of every word.
+Faster and can easily incorporate a new sentence/document or add a word to the vocabulary.
+
+Details of word2vec:
+Predict surrounding words in a window of length m of every word.
+Object function: Maximize the log probability of any context word given the current center word:
+J(theta) = 1/T Sigma Sigma log p(wt+j|wt) where t = 1 to T and -m <= j <= m
+
+For p(wt+j|wj), the simplest form is
+p(o|c) = e^(u * v) / Sigma e^(u * v)
+
+where
+o: outside word id
+c: center word id
+u: center and outside word vector of o
+v: center and outside word vector of c
+
+Every word has two vector.
+This is essentially "dynamic" logistic regression.
+
+Objective/Cost functions:
+Gradient descent
+
+Approximations:
+With large vocabularies, objective function is not scalable and would train too slowly.
+Idea:
+Approximate the normalization
+Define negative prediction that only samples a few words that do not appear in the context.
+Similar to focusing on mostly positive correlations.
+
+Linear Relationships in word2vec:
+Syntactically:
+X(apple) - X(apples) = X(car) - X(cars) = X(family) - X(families)
+
+Semantically:
+X(shirt) - X(clothing) = X(chair) - X(furniture)
+
+Count based vs direct prediction:
+Count based: LSA, HAL, PCA
+Fast training
+Efficient usage of statistics
+Primarily used to capture word similarity
+Disproportionate importance given to large counts
+
+Direct Prediction: RNN, Skip/gram, CBOW
+Scales with corpus size
+Inefficient usage of statistics
+Generate improved performance on other tasks
+Can capture complex patterns beyond word similarity
+
+=================================================================================================================
