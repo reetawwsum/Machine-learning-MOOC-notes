@@ -248,3 +248,43 @@ Logistic regression: Softmax classification on word vector x to obtain probabili
 Loss function: Cross entropy
 
 =======================================================================================================================
+
+Lecture 4
+=========
+Word window classification and Neural Networks
+
+Classification setup and notation:
+Generally, we have a training dataset consisting of samples
+{xi yi}^N
+
+where xi: inputs, e.g words, context windows, sentences, documents, etc
+yi: labels, sentiment, named entities, buy/sell decision, multi-word sequences
+
+Softmax layer with cross entropy loss function with regularization for classification problems.
+
+Learn both W and word vectors x
+But, re-training word vectors leads to loss of generalisation because words in training data will move around.
+
+Main idea:
+If you only have a small training dataset, don't train the word vectors.
+
+Word vectors = Word embeddings = Word representations
+
+Window Classification:
+Idea: classify a word in its context window of neighboring words.
+For e.g named entity recognition into 4 classes
+
+Train softmax classifier by assigning a label to a center word and concatenating all word vectors surrounding it.
+
+Softmax (logistic regression) is not very powerful, because they are linear.
+
+Neural networks can learn much more complex functions and non-linear decision boundaries.
+
+Neuron:
+h(x) = f(wx + b)
+f(z) = 1/1+e^z
+
+Basic idea of neural network:
+It is the loss function that will direct what the intermediate hidden variables should be, so as to do a good job at predicting the target for the next layer.
+
+============================================================================================================================
