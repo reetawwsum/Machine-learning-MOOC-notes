@@ -288,3 +288,32 @@ Basic idea of neural network:
 It is the loss function that will direct what the intermediate hidden variables should be, so as to do a good job at predicting the target for the next layer.
 
 ============================================================================================================================
+
+Lecture 5
+=========
+Neural Networks & Backprop
+
+Project types:
+a. Apply existing neural network model to a new task. For e.g Summarization
+b. Implement a complex neural architecture
+c. Come up with a new neural network model
+d. Theory of deep learning, e.g optimization
+
+Project steps:
+1. Define task
+2. Define dataset
+3. Define your metric
+4. Split your dataset
+5. Establish a baseline
+6. Implement existing neural net model
+7. Always be close to your data
+8. Try out different model variants
+
+Max-margin loss function:
+J = max(0, 1 - s + sc)
+where s is score of positive window
+sc is score of negative window
+
+Training with Backpropagation.
+
+=======================================================================================================================
