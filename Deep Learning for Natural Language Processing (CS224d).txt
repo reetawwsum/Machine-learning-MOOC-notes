@@ -317,3 +317,64 @@ sc is score of negative window
 Training with Backpropagation.
 
 =======================================================================================================================
+
+Week 6
+======
+Recurrent Neural Networks
+
+Backpropagation:
+Compute gradient of example-wise loss with respect to parameters
+
+Computing the loss is O(n)
+
+Neural tips/tricks:
+Multitask models: Share bottom layers of a neural network for other problems.
+
+Use unsupervised word vector per-training on a large text collection.
+
+General Strategy:
+1. Select network structure appropriate for problem
+Single word, fixed windows, sentence based, document level, bag of words, recursive vs recurrent, CNN
+Non-linearity: Sigmoid, tanh, ReLu
+
+2. Check for implementation bugs with gradient checks
+Start from simplest model then go to what you want.
+
+3. Parameter initialisation
+Initialize hidden layer biases to 0 and output biases to optimal value if weight were 0
+Initialize weights Uniform(-r, r), r inversely propositional to fan-in and fan-out
+(6/(fan-in + fan-out))^1/2
+
+4. Optimization tricks
+Use Mini-Batch Stochastic Gradient Descent
+Momentum with reduction in global learning rate.
+Variable learning rate
+AdaGrad: Adaptive learning rate for each parameter
+
+5. Avoid overfitting or underfitting.
+Reduce model size
+Standard l1 and l2 regularization
+Early stopping
+Dropout
+
+Language Models:
+Computes a probability for a sequence of words.
+P(w1, w2, ... wn) = Pie (wi|w1, w2, .... wi-1)
+
+Trigram/Bigra/Unigram models
+
+Fixed window model of context can be used for language modeling.
+
+Recurrent Neural Networks:
+Condition the neural networks on all previous words and tie the weights at each time step.
+ht = f(W(hh)ht-1 + W(hx)xt)
+We use the same set of W weights at all time steps.
+
+Cross entropy error (l) for training.
+
+Evaluation: Perplexity: 2^l
+
+Training RNN is hard:
+Vanishing or exploding gradient problem.
+
+======================================================================================================================
