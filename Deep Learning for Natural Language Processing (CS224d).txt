@@ -378,3 +378,64 @@ Training RNN is hard:
 Vanishing or exploding gradient problem.
 
 ======================================================================================================================
+
+Week 7
+======
+Tensorflow
+
+Deep Learning Package Design Choices:
+
+Model specification:
+a. Configuration file: Caffe, DistBelief, CNTK
+b. Programmatic generation: Torch, Theano, Tensorflow
+
+Programmatic models:
+Lua: Torch
+Python: Theano, Tensorflow
+Others
+
+Theano is an academic project, whereas Tensorflow funded by Google.
+
+Tensor:
+Multilinear maps from vector spaces to the real numbers.
+
+Tensorflow vs Numpy:
+Numpy has Ndarray support, but doesn't offer methods to create tensor functions and automatically compute derivates.
+No GPU support too.
+
+Tensorflow requires explicit evaluation.
+ta.eval()
+
+Workflow:
+Create a graph
+Create a environment (Session) tf.Session()
+Link the graph to the environment
+Execute the graph
+
+All computations add notes to global default graph.
+
+tf.InteractiveSession() is just convenient syntactic sugar for keeping a default session open.
+sess.run(c) is example of Tensorflow Fetch.
+
+Tensorflow Variables
+tf.Variable()
+tf.initialize_all_variables()
+
+Convert numpy array to tensor:
+tf.convert_to_tensor(a)
+
+Placeholders and feed dictionaries:
+Use tf.placeholder variables (dummy nodes that provide entry points for data to computational graph)
+A feed_dict is a python dictionary mapping from tf.placeholder vars to data.
+
+Variable scope:
+tf.variable_scope()
+tf.get_variable()
+
+Reuse variables scope:
+tf.get_variable_scope().reuse_variables()
+
+Tensorboard:
+Build-in visualisations
+
+==================================================================================================================
