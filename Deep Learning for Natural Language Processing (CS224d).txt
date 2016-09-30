@@ -318,8 +318,8 @@ Training with Backpropagation.
 
 =======================================================================================================================
 
-Week 6
-======
+Lecture 6
+=========
 Recurrent Neural Networks
 
 Backpropagation:
@@ -379,8 +379,8 @@ Vanishing or exploding gradient problem.
 
 ======================================================================================================================
 
-Week 7
-======
+Lecture 7
+=========
 Tensorflow
 
 Deep Learning Package Design Choices:
@@ -439,3 +439,75 @@ Tensorboard:
 Build-in visualisations
 
 ==================================================================================================================
+
+Lecture 8
+=========
+Recurrent Neural Networks
+
+Language Models:
+A language model computes a probability for a sequence of words. P(w1, w2, ... wn)
+Useful for Machine Translation
+
+Traditional language models:
+Using Markov assumption, create unigram, bigram, or trigram models
+
+Performance improves with keeping around higher n-grams counts and doing smoothing and so called backoff.
+
+Recurrent Neural Networks:
+RNNs tie the weights at each time step.
+Condition the neural network on all previous words.
+
+Model:
+Given list of word vectors:
+x1 ... xt-1, xt, xt+1, ... xn
+
+At a single time step
+ht = f(W(hh)ht-1 + W(hx)xt)
+yt = softmax(W(s)ht)
+
+For language model
+P(xt+1 = vj|x1, ... xt) = ytj
+
+Cross entropy loss function but predicting words instead of class.
+
+Evaluation:
+Perplexity (Lower is better)
+
+Training RNNs is hard:
+Multiply the same matrix at each time step during forward prop.
+Ideally inputs from many time step ago can modify output y.
+
+Vanishing/exploding gradient problem:
+It is due to matrix matrix derivates and multiplications in hidden-hidden units.
+
+Why is the vanishing gradient a problem?
+The error at a time step ideally can tell a previous time step from many steps away to change during backprop.
+
+Trick for exploding gradient: clipping trick
+Clip gradients to a maximum value
+
+For vanishing gradients: Initialization + ReLus
+Initialize W(*) to identity matrix
+
+Note:
+You only need to pass backwards through your sequence once and accumulate all the deltas from each Et.
+Class-based word prediction.
+P(wt|history) = P(ct|history) P(wt|ct)
+
+Other task:
+Classify each word into:
+a. NER
+b. Entity level sentiment in context
+c. Opinionated expressions
+
+Bidirectional RNN:
+For classification you want to incorporate information from words both preceding and following.
+P(wi|w1 ... wi-1, wi+1, ... wn)
+
+Deep bidirectional RNN for more powerful problems.
+Three layers are sufficient for better f1 score.
+
+Evaluation:
+Precision, Recall, and F1
+
+=========================================================================================================================
