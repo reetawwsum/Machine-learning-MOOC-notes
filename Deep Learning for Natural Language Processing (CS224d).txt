@@ -511,3 +511,75 @@ Evaluation:
 Precision, Recall, and F1
 
 =========================================================================================================================
+
+Lecture 9
+=========
+Fancy Recurrent Neural Networks for Machine Translation
+
+Deep Bidirectional RNN:
+Dataset: MPQA 1.2 corpus consists of 535 news articles.
+
+Machine Translation:
+Methods are statistical.
+Use parallel corpora.
+
+Probabilistic model:
+e = arg max P(e|f) = arg max P(f|e) P(e)
+
+Step1: Alignment
+It is itself a challenging problem.
+
+Step2: Search
+
+Deep learning model:
+Sequence to sequence RNN
+
+RNN Translation Model Extensions:
+a. Train different RNN weights for encoding and decoding.
+b. Compute every hidden state in decoder from
+	i. Previous hidden state
+	ii. Last hidden vector of encoder.
+	iii. Previous predicted output word
+c. Train stacked/Deep RNN with multiple layers.
+d. Potentially train bidirectional encoder.
+e. Train input sequence in reverse order for simple optimization problem.
+f. Better units
+
+GRU (Gated Recurrent Units):
+Main ideas:
+Keep around memories to capture long distance dependencies.
+Allow error messages to flow at different strengths depending on the inputs.
+
+Model:
+GRU first computes an update gate (another layer) based on current input word vector and hidden state.
+zt = sigmoid(W(z)xt + U(z)ht-1)
+
+Compute reset gate similarly but with different weights.
+rt = sigmoid(W(r)xt + U(r)ht-1)
+
+New memory content
+ht = tanh(Wxt + rt U ht-1)
+If reset gate unit is 0, then this ignores previous memory and only stores the new word information.
+
+Final memory at time step combines current and previous time steps:
+ht = zt ht-1 + (1 - zt) ht
+
+Intuition:
+If reset is close to 0, ignore previous hidden state.
+- Allows model to drop information that is irrelevant in the future.
+Update gate controls how much of past state should matter now
+- If z is close to 1, then we can copy information in that unit through many time steps. Less vanishing gradient.
+
+Long-short-term-memories (LSTMs):
+Allow each time step to modify:
+a. Input gate: i = sigmoid(Wi x + Ui ht-1)
+b. Forget gate: f = sigmoid(Wf x + Uf ht-1)
+c. Output gate: o = sigmoid(Wo x + Uo ht-1)
+d. New memory cell: ct = tanh(Wc x + Uc ht-1)
+
+Final memory cell: ct = ft ct-1 + i(t) ct
+Final hidden state: ht = o(t) + tanh(ct)
+
+Deep LSTMs don't outperform traditional MT yet.
+
+=========================================================================================================================
