@@ -583,3 +583,90 @@ Final hidden state: ht = o(t) + tanh(ct)
 Deep LSTMs don't outperform traditional MT yet.
 
 =========================================================================================================================
+
+Lecture 10
+==========
+LSTMs and Recursive Neural Networks
+
+LSTMs are very powerful, especially when stacked and made even deeper.
+In just one year, they have outperform traditional MT systems.
+
+Characters to characters sequence models.
+
+Recursive Neural Networks:
+Building on Word Vector Space models:
+By mapping longer phrases into the same vector space, we can represent the meaning of longer phrases.
+
+Semantic Vector spaces:
+Vector representing phrases and sentences that do not ignore word order and capture semantics for NLP tasks
+
+How should we map phrases into a vector space?
+Use principle of compositionality:
+The meaning(vector) of a sentence is determined by
+a. The meaning of its words
+b. The rule that combines them.
+
+Models in this section can jointly learn parse trees and compositional vector representations.
+
+Recursive models results in creation of parse trees.
+
+Recursion helpful in describing natural language.
+a. Helpful in disambiguation.
+b. Helpful for some tasks to refer to specific phrases.
+c. Labeling less clear if specific to only subphrases.
+d. Works better for some tasks to use grammatrical tree structure.
+
+Recursive Neural Networks for Structure Prediction:
+Inputs: two candidate children's representations
+Outputs:
+a. The semantic representation if the two nodes are merged.
+b. Score of how plausible the new node would be.
+
+Same W parameters at all nodes of the tree.
+p = tanh(Wx + b) where x = [c1 c2]
+score = U p
+
+Max-margin framework:
+The score of a tree is computed by the sum of the parsing decision scores at each node.
+s(x, y) = Sigma sn
+
+Loss function:
+J = Sigma s(xi, yi) - max(s(xi, y) + delta(y, yi)) where y belongs to A(x)
+
+The loss delta(y, yi) penalizes all incorrect decisions.
+
+Structure search for A(x) was maximally greedy:
+a. Instead: Beam search with chart
+
+Training:
+Backpropagation through structure:
+a. Sum derivates of W from all nodes.
+b. Split derivates at each node.
+c. Add error messages from parent + node itself.
+
+AdaGrad training algorithm
+
+Single weight matrix RNN could capture some phenomena but not adequate for more complex, higher order composition and parsing long sentences.
+Idea: Syntactically-Untied RNN
+Condition the composition function on the syntactic categories, "untie the weights"
+Different weight vector for different structures.
+
+Compositional Vector Grammars:
+Problem: Speed. Every candidate score in beam search needs a matrix-vector product.
+Solution: Compute score only for a subset of trees coming from a simpler, faster model (PCFG)
+- Prunes very unlikely candidates for speed.
+- Provides coarse syntactic categories of the children for each beam candidate.
+
+Compositional Vector Grammars: CVG = PCFG + RNN
+
+Labeling in Recursive Neural Networks:
+We can use each node's representation as features for a softmax classifier.
+P(c|p) = softmax(Sp)
+
+This can be used for parsing images.
+Main idea:
+a. The meaning of a scene image is also a function of smaller regions.
+b. How they combine as parts to form larger objects.
+c. And how the objects interact
+
+=================================================================================================================
