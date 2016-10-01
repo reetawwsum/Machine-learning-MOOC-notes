@@ -670,3 +670,36 @@ b. How they combine as parts to form larger objects.
 c. And how the objects interact
 
 =================================================================================================================
+
+Lecture 11
+==========
+Advanced Recursive Neural Networks
+
+a. Standard RNNs
+Applications: Paraphrase detection
+
+Model:
+Unsupervised RNNs and a pair-wise sentence comparison of nodes in parsed trees.
+Recursive Autoencoder for semantic parsing of sentences
+Neural Network for Variable-Sized Input with variable sized pooling layer.
+
+b. Matrix-vector RNNs
+Application: Relation classification
+
+Model:
+Each node in tree is representated by vector and a matrix to capture more data.
+
+c. Recursive Neural Tensor Networks
+Application: Sentiment Detection
+Hard to capture negation
+
+Dataset: New Sentiment Treebank (Stanford)
+
+Model:
+Idea: Allow more interactions of vectors
+The main idea is to use the same, tensor-based composition function for all nodes.
+
+d. Tree LSTMs
+Application: Semantic/Phrase Similarity
+
+================================================================================================================
