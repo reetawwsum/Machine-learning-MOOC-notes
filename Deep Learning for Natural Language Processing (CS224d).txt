@@ -773,3 +773,101 @@ d. Recursive Neural Networks
 e. Recurrent Neural Networks
 
 ===================================================================================================================
+
+Lecture 13
+==========
+Applications of DL to NLP
+
+Model overview:
+How to properly compare to other models and choose your own model:
+a. Word representation
+b. Phrase composition
+c. Objective function
+d. Optimization
+
+a. Word vectors:
+i. Random
+ii. Word2Vec
+iii. Glove
+iv. Dimension: often defines the number of model parameters
+v. Work directly on characters or morphemems
+
+b. Phrase vector composition
+Composition function governs how exactly word and phrase vectors interact to compose meaning
+i. Averaging
+ii. Recursive neural networks
+iii. Convolutional neural networks
+iv. Recurrent neural networks
+v. Matrix-vector RNN
+vi. Recursive neural tensor networks
+
+Additional choice for recursive neural networks
+i. Constituency tree
+ii. Dependency tree
+iii. Balanced tree
+
+CNNs
+i. No pooling layer
+ii. Pooling layers: simple max-pooling or dynamic pooling
+iii. Pooling across different dimensions.
+
+Recurrent:
+i. Vanilla
+ii. GRU
+iii. LSTM
+
+c. Objective function
+i. Max margin
+ii. Cross entropy
+iii. Auto encoder
+
+d. Optimization:
+i. Initialization
+ii. Algorithm
+	- SGD
+	- SGD + momentum
+	- L-BFGS
+	- AdaGrad
+	- Adadelta
+iii. Tricks
+	- Regularisation
+	- Dropout
+
+Applications:
+i. Character RNNs on text and code
+
+ii. Morphology + Neural Network
+Better word representations with Recursive Neural Networks for Morphology
+
+iii. Natural language inference
+a. Lexical entailment
+b. Quantification
+c. Coreference
+d. Lexical/scope ambiguity
+e. Commonsense knowledge
+f. Modality
+g. Factivity and implicativity
+
+A minimal NN for lexical relations:
+Words are learned embedding vectors.
+One plain RNN or RNTN layer
+Softmax emits relations labels
+Learn everything with SGD
+
+Recursion in propositional logic
+
+Two trees + learned comparison layer, then a classifier.
+
+iv. Question Answering
+Using max margin objective function
+
+v. Visual Grounding
+Idea: Map sentences and images into a joint space.
+
+Model:
+Convolutional Neural Networks and RNN trained to give large inner products between sentence and image vectors.
+
+Image-sentence generation:
+CNN + RNN with LSTM
+
+======================================================================================================================
