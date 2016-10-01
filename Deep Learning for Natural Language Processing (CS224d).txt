@@ -703,3 +703,73 @@ d. Tree LSTMs
 Application: Semantic/Phrase Similarity
 
 ================================================================================================================
+
+Lecture 12
+==========
+Convolutional Neural Networks (for NLP)
+
+Recursive neural nets requires a parser to get a tree structure.
+Recurrent neural nets cannot capture phrases without prefix context and often capture too much of last words in final vectors.
+
+CNN: Compute vectors for every possible phrase.
+
+Convolution is great to extract features from images.
+
+Model:
+First layer: compute all bigram vectors using convolutions.
+
+Multiple layers with different convolutions.
+
+Convolutional Neural Networks for Sentence Classification:
+
+Model:
+Input: Concatenate all input word vectors.
+
+Single layer CNN:
+
+a. Convolutional filter:
+Result is a feature map.
+
+b. Pooling layer:
+Max pooling: From feature map to a pooled single number
+
+Use multiple filter w
+Useful to have different window sizes h
+So, we have some filters that look at unigrams, bigrams, trigrams, etc.
+
+c. Simple final softmax layer
+
+Multi channel idea:
+Initialize with pre-trained word vectors
+Start with two copies.
+Backprop into only one set, keep other "static"
+Both channels added to c, before max-pooling.
+
+Tricks to make it work better: Dropout
+Randomly mask/dropout/set to 0 some of the feature weights z
+Reasoning: Prevents co-adaptation (overfitting)
+At test time, there is no dropout
+
+Regularization l2 loss
+
+Hyperparameters:
+a. Nonlinearity: ReLu
+b. Window filter size: 3, 4, 5
+c. Each filter size has 100 feature maps
+d. Droput 0.5
+e. Mini batch size 50
+f. Word vectors k = 300
+
+Tree-LSTMs are better than CNN
+
+CNN application: Translation
+Uses CNN for encoding and RNN (Recurrent) for decoding.
+
+Model comparison:
+a. Bag of words
+b. Window model
+c. CNNs
+d. Recursive Neural Networks
+e. Recurrent Neural Networks
+
+===================================================================================================================
