@@ -27,7 +27,7 @@ g. Databases, etc.
 
 Goals of this class:
 a. Understand that language processing is hard.
-b. Understand they key problems in NLP.
+b. Understand the key problems in NLP.
 c. Learn about the methods used to address these problems.
 d. Understand the limitations of these methods.
 
