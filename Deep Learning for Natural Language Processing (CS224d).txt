@@ -917,3 +917,40 @@ a. Word hash
 b. Cluster hash
 
 =====================================================================================================================
+
+Guest lecture
+=============
+Andrew Mass - Neural Network in Speech Recognition
+
+Speech Recognition:
+Architecture:
+Speech -> Histogram -> Noise Reduction -> Transcription -> Understanding
+
+Conversational Speech Dataset - Switchboard
+300 hours, 4870 speakers
+
+Models:
+Acoustic Modeling with GMMs
+Audio input -> Acoustic Model -> Hidden Markov Model -> Sub-phones -> Pronounciation -> Transcription
+
+Use DNN as Acoustic Model
+
+Different in modern DNNs:
+Fast computers
+Deeper nets improve on shallow nets
+Architecture choices (Non-linearity)
+Pre-training doesn't matter.
+Many more parameters.
+
+Convolutional Networks is great for spectral distortions.
+
+HMM-free RNN recognition:
+Removing (Hidden Markov Model -> Sub-phones -> Pronounciation -> Transcription), and using collapsing function on top of DNN (RNN), which outputs single character.
+
+Bi-directional recurrence is better model for speech recognition. LSTM also improves the error rate.
+
+Decoding with language model or character language model.
+
+Decoding with language model creates new word, wheres HMM-DNN won't.
+
+======================================================================================================================
