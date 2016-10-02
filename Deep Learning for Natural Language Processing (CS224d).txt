@@ -871,3 +871,49 @@ Image-sentence generation:
 CNN + RNN with LSTM
 
 ======================================================================================================================
+
+Guest lecture
+=============
+Jason Weston - Facebook AI Research
+
+Memory Networks:
+Motivation: long-term memory is required to read a story and then answer question about it.
+
+Application:
+Comprehension data
+Generate dataset using simulation and language modeling.
+
+Model:
+a. I: (input feature map) this converts incoming data to the internal feature representation.
+b. G: (Generalization) this updates memories given new input.
+c. O: this produces new output (in feature representation space) given the memories.
+d. R: (response) converts O into a response seen by the outside world.
+
+Implementation:
+I (input): no conversion, keep original text x
+G (generalization): stores I(x) in next available slot mn.
+O (output): Loops over all memories k = 1 or 2 times.
+	i. 1st loop max: finds best match mi with x
+	ii. 2nd loop max: finds best match mj with (x, mi)
+	iii. The output o is representated with (x, mi, mj)
+R (response): ranks all words in the dictionary given o and returns best single word.
+
+Extensions:
+a. If the input is at the character or word level, one could group inputs and put each chunk in a memory slot.
+b. Use an RNN for module R to give true responses.
+c. If the memory is huge, we need to organize the memories. Hash the memories to store in buckets.
+d. If the memory is full, remove useless memory.
+
+Matching function:
+Embedding features
+
+Objective function:
+Max margin
+
+Use relative time as a feature in a model.
+
+Speed up techniques:
+a. Word hash
+b. Cluster hash
+
+=====================================================================================================================
