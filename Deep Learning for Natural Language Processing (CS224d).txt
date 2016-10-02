@@ -954,3 +954,87 @@ Decoding with language model or character language model.
 Decoding with language model creates new word, wheres HMM-DNN won't.
 
 ======================================================================================================================
+
+Guest lecture
+=============
+Elliot English - Efficient Implementations and GPUs
+
+Data learning algorithms require massive datasets to improve accuracy.
+Sequence to sequence LSTM translation
+- 12m sentences, 80k vocab
+- 10 days to train using 8 GPUs
+
+Structured vs Unstructured Computation:
+Structured: Regular dependency between hidden units. For e.g CNN
+Unstructured: Irregular dependency between hidden units. For e.g RNTN
+
+General idea: exploit structure for performance improvement.
+
+Block Operations:
+Combine individual expressions into large computational expressions. For e.g linear operations such as matrix matrix multiplication
+
+Highly optimized implementations:
+CPU: Intel MKL, Atlas, GOTO
+GPU: CUBLAS (Cuda), OpenACC, cIBLAS
+
+Batching:
+Batch wise input to the model.
+Con: Worse convergence as batch size increases.
+
+CPUs vs GPUs:
+CPU:
+Latest: Intel Xeon Processor E7-8890 v3 (18 cores, 2.50GHz)
+- Peak performance: 238 Gflop/s
+- Main memory: 102 GB/s
+
+GPU:
+Latest: NVIDIA K40 (2880 cores, 745 MHz, 12GB onboard memory)
+- Peak performance: 4.29 Tflop/s
+- Onboard memory: 288 GB/s
+
+Problems achieving peak performance in GPU:
+a. Limited memory capacity.
+b. CPU to/from GPU communication is very slow. 16 GB/s
+c. Programming model requires significant redundant calculation.
+d. Reductions are slow.
+e. Kernel launch overhead.
+
+RNN Hidden state = 100 dimension
+CPUs perform better due to less overhead, better memory bandwidth
+GPUs are 2x slower than CPUs
+
+RNN Hidden state = 1000 dimension
+GPUs perform better due to fast floating point math
+GPUs are 10x faster than CPUs
+
+Parallelism:
+
+Data Parallelism:
+a. Distribute different samples to computational units.
+b. Compute gradient for each sample.
+c. Average gradient, apply update.
+
+Model Parallelism:
+a. Partition model graph based upon data dependencies.
+b. Distribute independent parts of graph to computational units.
+c. Exchange activations during forward and backward propogation - gradients also if weights shared.
+
+Shared memory Parallelism:
+
+Distributed memory Parallelism:
+Multiple machines
+Multiple GPUs in a single box
+
+Distributed Asynchronous Stochastic Gradient Descent:
+Workers can update weights while other workers are reading from weights.
+
+Easy implementation:
+Automatic Differentiation
+Hard to beat open source libraries.
+
+Research Directions:
+a. Change model to improve computational aspects.
+b. Modify models numerical properties.
+c. Search for better optimization methods.
+
+=======================================================================================================================
