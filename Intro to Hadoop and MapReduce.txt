@@ -46,3 +46,49 @@ Hadoop Ecosystem:
 11. Mahout: Machine Learning library
 
 CDH is open source solution to manage Hadoop Ecosystem.
+
+Lesson 2
+========
+
+HDFS and MapReduce
+==================
+
+Files are stored in Hadoop Distributed File System (HDFS)
+Data stored in HDFS is broken down into block (64MB default) and stored in 
+	different nodes/daemons named as datanodes. Meta data of the data is stored 
+	in another node/daemon names as Namenode.
+
+Data is replicated into multiple nodes to overcome network failure or disk
+	failure.
+
+In order to overcome namenode failure, secondary namenode is put into place.
+	Also known as standby namenode.
+
+Hadoop commands:
+hadoop fs [command] [options]
+
+For e.g
+hadoop fs -ls
+
+MapReduce:
+Instead of sequential processing, MapReduce breaks the data into smaller chunks
+	and process it in parallel.
+
+Data -> Mappers (Keys, Values) -> (Shuffle and Sort) -> Reducers (Key, Values)
+
+Daemons of MapReduce:
+Job Tracker and Task Tracker (v1)
+Resource Manager and Node Manager (v2)
+
+HDFS blocks are used by mappers using MapReduce processing.
+
+Java is preferred to write Hadoop MapReduce code, but with use of Hadoop
+	Streaming, it can be written in any language, such as Python.
+
+Running MapReduce job:
+hadoop jar [streaming jar] -mapper [mapper file] -reducer [reducer file] -file
+	[mapper file] -file [reduce file] -input [input dir] -output [output dir]
+
+Hadoop restricts overwriting data at the same location in cluster.
+
+In Hadoop, think to solve every problem in MapReduce format.
