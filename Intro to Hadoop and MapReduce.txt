@@ -92,3 +92,20 @@ hadoop jar [streaming jar] -mapper [mapper file] -reducer [reducer file] -file
 Hadoop restricts overwriting data at the same location in cluster.
 
 In Hadoop, think to solve every problem in MapReduce format.
+
+Lesson 3
+========
+
+MapReduce Code
+==============
+
+While writing mapper code, think of creating intermediate code, consisting of
+	keys and values.
+
+Shuffle and Sort is done in between mapper and reducer phase.
+
+Reduce code process on shuffle and sorted keys and values, and generate key and
+	value.
+
+In order to test your mapper and reduce code while developing, use
+cat testFile | mapper.py | sort | reducer.py
